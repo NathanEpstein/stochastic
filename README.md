@@ -61,7 +61,7 @@ Parameters: lambda is a strictly positive real number, T is a strictly positive 
 
 ## License
 
-**"MIT" License**
+**The MIT License (MIT)**
 
 > Copyright (c) 2014 Nathan Epstein
 >
