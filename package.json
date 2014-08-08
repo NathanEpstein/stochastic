@@ -1,6 +1,6 @@
 {
   "name": "stochastic",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
   "main": "index.js",
   "author": {

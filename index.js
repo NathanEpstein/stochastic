@@ -113,7 +113,8 @@ var DTMC = module.exports.DTMC = function(transMatrix, steps, start, path){
         }
         sum += matrix[i][j];
       }
-      if (sum != 1){
+      var eps = (4*Math.pow(10,-16));
+      if (sum < 1-eps || sum > 1+eps){
         return false;
       }
     }
