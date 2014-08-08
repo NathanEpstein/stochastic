@@ -1,7 +1,7 @@
 stochastic
 ==========
 
-![Geometric Brownian Motion](GBM.png)
+![Geometric Brownian Motion](https://raw.githubusercontent.com/NathanEpstein/stochastic/master/GBM.png)
 
 ## Install
 `npm install stochastic --save`
