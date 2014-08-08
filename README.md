@@ -1,6 +1,8 @@
 stochastic
 ==========
 
+![Geometric Brownian Motion](GBM.png)
+
 ## Install
 `npm install stochastic --save`
 
