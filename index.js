@@ -214,9 +214,54 @@ var CTMC = module.exports.CTMC = function(transMatrix, T, start, path){
   }
 }
 
+var sample = module.exports.sample = function(arr, n){
+    var samp = [];
+    for (var i=0; i<n; i++){
+        var index = Math.floor(Math.random()*arr.length);
+        var value = arr[index];
+        samp.push(value);
+    }
+
+    return samp;
+};
 
 
+var hist = module.exports.hist = function(arr){
+    var newArr = arr.slice().sort(function(a,b){
+        return a>b;
+    });
 
+    var max = newArr[arr.length -1];
+    var min = newArr[0];
+    var bins = Math.round(Math.sqrt(arr.length));
+    var binSize = (max-min)/bins;
+
+
+    var obj= {};
+    for (var i=0; i<bins; i++){
+        var key = min + (i*binSize);
+        obj[key] = 0;
+    }
+
+    for (var j=0; j<arr.length; j++){
+        var val = min;
+        while(true){
+            if (j == arr.length-1){
+                obj[min +(bins-1)*binSize] += 1;
+                break;
+            }
+            else if (newArr[j]<val+binSize){
+                obj[val]+= 1;
+                break;
+            }
+            else{
+                val += binSize;
+            }
+        }
+    }
+
+    return obj;
+};
 
 
 
