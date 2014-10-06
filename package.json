@@ -1,8 +1,9 @@
 {
   "name": "stochastic",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
   "main": "index.js",
+  "keywords":["stochastic","histogram","Markov", "probability", "Brownian", "Normal", "Poisson"],
   "author": {
     "name": "Nathan Epstein",
     "email": "ne2210@columbia.edu"

@@ -22,6 +22,10 @@ var discreteMarkovChain = stoch.DTMC(transMatrix, steps, start, path);
 var continuousMarkovChain = stoch.CTMC(transMatrix, T, start, path);
 
 var poissonProcess = stoch.poissP(lambda, T, path);
+
+var sample = stoch.sample(array, num);
+
+var histogram = stoch.hist(array);
 ```
 
 ## Extended Usage Notes
@@ -60,6 +64,18 @@ Parameters: transMatrix is a symmetric 2-d array, T is a strictly positive real 
 Returns an array with the times of each arrival in a Poisson Process (http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T.
 
 Parameters: lambda is a strictly positive real number, T is a strictly positive real number, and path is a boolean. If path is false, returns only the number of arrivals (defaults to true).
+
+### stoch.sample(arr, n)
+
+Generates a random sample (with replacement) from a user input array of observations. Number of observations is specified by the user.
+
+Parameters: arr is an array of values and n is a positive integer designating the number of observations.
+
+###stoch.hist(arr)
+
+Generates a histogram from an array given by the user. Assumes numeric input in the array. Uses sqrt(n) bins where n is the number of observations. Returns a hash table with the {key:value} pairs {lower-x-boundary-of-bin: height-of-bin}.
+
+Parameters: arr is an array of numeric values.
 
 ## License
 
