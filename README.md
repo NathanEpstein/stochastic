@@ -25,7 +25,6 @@ var poissonProcess = stoch.poissP(lambda, T, path);
 
 var sample = stoch.sample(array, num);
 
-var histogram = stoch.hist(array);
 ```
 
 ## Extended Usage Notes
@@ -70,12 +69,6 @@ Parameters: lambda is a strictly positive real number, T is a strictly positive 
 Generates a random sample (with replacement) from a user input array of observations. Number of observations is specified by the user.
 
 Parameters: arr is an array of values and n is a positive integer designating the number of observations.
-
-###stoch.hist(arr)
-
-Generates a histogram from an array given by the user. Assumes numeric input in the array. Uses sqrt(n) bins where n is the number of observations. Returns a hash table with the {key:value} pairs {lower-x-boundary-of-bin: height-of-bin}.
-
-Parameters: arr is an array of numeric values.
 
 ## License
 
