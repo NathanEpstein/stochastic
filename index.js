@@ -224,3 +224,44 @@ var sample = module.exports.sample = function(arr, n){
 
     return samp;
 };
+
+
+var hist = module.exports.hist = function(arr){
+    var newArr = arr.slice().sort(function(a,b){
+        return a-b;
+    });
+
+    var max = newArr[arr.length -1];
+    var min = newArr[0];
+    var bins = Math.round(Math.sqrt(arr.length));
+    var binSize = (max-min)/bins;
+
+    var obj= {};
+    var keys = [];
+    for (var i=0; i<bins; i++){
+        var key = min + (i*binSize);
+        keys.push(key);
+        obj[key] = 0;
+    }
+
+    for (var j=0; j<arr.length; j++){
+        var val = min;
+        var temp_key = 0;
+        while(true){
+            if (newArr[j] == newArr[newArr.length-1]){
+                obj[keys[keys.length-1]] += 1;
+                break;
+            }
+            else if (newArr[j]<val+binSize){
+                obj[keys[temp_key]]+= 1;
+                break;
+            }
+            else{
+                temp_key += 1;
+                val += binSize;
+            }
+        }
+    }
+
+    return obj;
+};
