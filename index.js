@@ -225,6 +225,13 @@ var sample = module.exports.sample = function(arr, n){
     return samp;
 };
 
+var exp = module.exports.exp = function(lambda){
+  return (Math.log(Math.random())/lambda);
+}
+
+var pareto = module.exports.pareto = function(x_m, alpha){
+  return (x_m/Math.pow(Math.random(),1/alpha));
+}
 
 var hist = module.exports.hist = function(arr){
     var newArr = arr.slice().sort(function(a,b){
