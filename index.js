@@ -28,7 +28,7 @@ var poissP = module.exports.poissP = function (lambda, T, path){
 
 // Generates normal sample following Box Muller Algorithm
 var norm = module.exports.norm = function(mu, sigma, num){
-  var U1, U2, x;
+  var U1, U2, x, z;
   var sample = [];
 
   if (num <=0 || sigma <=0){
