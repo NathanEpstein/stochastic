@@ -226,7 +226,7 @@ var sample = module.exports.sample = function(arr, n){
 };
 
 var exp = module.exports.exp = function(lambda){
-  return (Math.log(Math.random())/lambda);
+  return (-Math.log(Math.random())/lambda);
 }
 
 var pareto = module.exports.pareto = function(x_m, alpha){
