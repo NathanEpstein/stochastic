@@ -22,34 +22,37 @@ var poissP = module.exports.poissP = function (lambda, T, path) {
 
   if (path == false){
     return n;
-  };
+  }
   else{
     return N_t;
   };
 };
 // Generates normal sample following Box Muller Algorithm
-var norm = module.exports.norm = function(mu, sigma, num){
-  var U1, U2, x, z;
+var norm = module.exports.norm = function(mu,sigma,num){
+  var U1, U2, x, y, z1, z2;
   var sample = [];
 
   if (num <=0 || sigma <=0){
     return sample;
   };
 
-  if (typeof num === 'undefined' || num == 1 ||(num % 1) != 0){
+  function boxMuller(mu,sigma){
     U1 = Math.random();
     U2 = Math.random();
-    z = Math.sqrt(-2*Math.log(U1))*Math.cos(2*U2*Math.PI);
-    x = mu + (sigma*z);
-    return x;
+    z1 = Math.sqrt(-2*Math.log(U1))*Math.cos(2*U2*Math.PI);
+    z2 = Math.sqrt(-2*Math.log(U1))*Math.sin(2*U2*Math.PI);
+    x = mu + (sigma*z1);
+    y = mu + (sigma*z2);
+    return [x,y];
+  }
+
+  if (typeof num === 'undefined' || num == 1 ||(num % 1) != 0){
+    sample.push(boxMuller(mu,sigma)[0]);
   };
 
-  for (var i=0; i<num; i++){
-    U1 = Math.random();
-    U2 = Math.random();
-    z = Math.sqrt(-2*Math.log(U1))*Math.cos(2*U2*Math.PI);
-    x = mu + (sigma*z);
-    sample.push(x);
+  if (num/2 % 2 != 0) sample.push(boxMuller(mu,sigma)[0]);
+  for (var i=0; i<Math.floor(num/2); i++){
+    sample = sample.concat(boxMuller(mu,sigma));
   };
   return sample;
 };
@@ -65,10 +68,9 @@ var brown = module.exports.brown = function (mu, sigma, T, steps, path){
     return B_t;
   };
 
-
   if (path == false){
     return ((mu*T) + (sigma * norm(0,Math.sqrt(T))));
-  };
+  }
   else{
     for (var i=0; i<steps; i++){
       dB = (mu * dt) + (sigma * norm(0,Math.sqrt(dt)));
@@ -89,8 +91,7 @@ var GBM = module.exports.GBM = function(S0,mu,sigma,T,steps,path){
 
   if (path == false){
     return S0*Math.exp((mu - (sigma*sigma/2))*T + (sigma*norm(0,Math.sqrt(T))))
-  };
-
+  }
   else{
     var B_t = brown((mu - (sigma*sigma/2)), sigma, T, steps);
     B_t.forEach(function(B){
@@ -147,7 +148,7 @@ var DTMC = module.exports.DTMC = function(transMatrix, steps, start, path){
   };
   if (path == false){
     return fullPath[fullPath.length - 1];
-  };
+  }
   else{
     return fullPath;
   };
@@ -196,7 +197,7 @@ var CTMC = module.exports.CTMC = function(transMatrix, T, start, path){
     if (t > T){
       if (path == false){
         return lastState;
-      };
+      }
       else{
         return fullPath;
       };
@@ -260,11 +261,11 @@ var hist = module.exports.hist = function(arr){
             if (newArr[j] == newArr[newArr.length-1]){
                 obj[keys[keys.length-1]] += 1;
                 break;
-            };
+            }
             else if (newArr[j]<val+binSize){
                 obj[keys[temp_key]]+= 1;
                 break;
-            };
+            }
             else{
                 temp_key += 1;
                 val += binSize;
