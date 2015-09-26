@@ -47,7 +47,7 @@ var norm = module.exports.norm = function(mu, sigma, num) {
   }
 
   if (typeof num === 'undefined' || num == 1 ||(num % 1) != 0){
-    sample.push(boxMuller(mu, sigma)[0]);
+    return boxMuller(mu, sigma)[0];
   };
 
   if (num / 2 % 2 != 0) sample.push(boxMuller(mu, sigma)[0]);
