@@ -3,7 +3,9 @@ cat templates/scrubby_header.html
 for JS in *.js
 do
 F=$(basename $JS .js)
+
 echo "<div id='$F'></div>"
+echo "<h2>$F</h2>"
 echo '<script type="text/scrubby">'
 cat $JS | grep -v "require('../index')"
 echo '</script>'
