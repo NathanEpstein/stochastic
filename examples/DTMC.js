@@ -2,8 +2,7 @@
 
 var stoch = require('../index');
 
-
-var transMatrixTwo =  [
+var transMatrixTwo = [
         [0.1, 0.9],
         [0.5, 0.5]
 ];
