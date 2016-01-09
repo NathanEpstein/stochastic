@@ -34,6 +34,7 @@ var pareto = stoch.pareto(x_m,alpha);
 ```
 
 ## Extended Usage Notes
+
 ### stoch.norm(mu, sigma, num)
 
 Returns an array with num i.i.d normal random variables (http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
@@ -76,20 +77,19 @@ Generates a random sample (with replacement) from a user input array of observat
 
 Parameters: arr is an array of values and n is a positive integer designating the number of observations.
 
-
 ### stoch.hist(arr)
 
 Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
 
 Parameters: arr is an array of numeric values.
 
-###stoch.exp(lambda)
+### stoch.exp(lambda)
 
 Generates an exponential random variable with rate parameter lambda.
 
 Parameters: lambda is a positive real number.
 
-###stoch.pareto(x_m,alpha)
+### stoch.pareto(x_m, alpha)
 
 Generates a pareto random variables with paramters x_m and alpha.
 
