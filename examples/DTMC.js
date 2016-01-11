@@ -1,6 +1,7 @@
 // DTMC(transMatrix, steps, start, path)
 
 var stoch = require('../index');
+var report = require('./report');
 
 var transMatrixTwo = [
         [0.1, 0.9],

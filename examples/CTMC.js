@@ -1,6 +1,7 @@
 // CTMC(transMatrix, T, start, path)
 
 var stoch = require('../index');
+var report = require('./report');
 
 var transMatrixTwo = [
         [0.1, 0.9],
@@ -9,4 +10,4 @@ var transMatrixTwo = [
 
 var CTMC = stoch.CTMC(transMatrixTwo, 20, 0, true);
 
-console.log(CTMC);
+report('CTMC', CTMC);
