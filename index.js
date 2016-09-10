@@ -2,8 +2,10 @@
 
 /**
  * Given a Poisson process, the probability of obtaining exactly n successes in N trials is given by the limit of a binomial distribution
- * @param {int} lambda
- * @param {int} T
+ * http://en.wikipedia.org/wiki/Poisson_process
+ * @return {Array<nuber:positive>} An array with the times of each arrival in a Poisson Process
+ * @param {number:positive} lambda (rate)
+ * @param {number:positive} T (time)
  * @param {boolean} path
  */
 var poissP = module.exports.poissP = function(lambda, T, path) {
@@ -36,10 +38,9 @@ var poissP = module.exports.poissP = function(lambda, T, path) {
 
 /**
  * A normal distribution in a variate X with mean mu and variance sigma^2 is a statistic distribution with probability density function
- * Generates normal sample following Box Muller Algorith
- * @param {float} mu
- * @param {float} sigma
- * @param {int} num
+ * @param {number} mu
+ * @param {number:positive} sigma
+ * @param {int:positive} num
  */
 var norm = module.exports.norm = function(mu, sigma, num) {
   var U1, U2, x, y, z1, z2;
@@ -72,13 +73,12 @@ var norm = module.exports.norm = function(mu, sigma, num) {
 
 
 /**
- * B(t) = mu*t + sigma*W(t), W(t) ~ norm(0,sqrt(t))
-tion
- * @param {} mu
- * @param {} sigma
- * @param {} T
- * @param {} steps
- * @param {} path
+ * Returns an array corresponding to the path of Brownian motion (http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
+ * @param {number} mu
+ * @param {number:positive} sigma
+ * @param {number:positive} T
+ * @param {int:positive} steps
+ * @param {boolean} path
  */
 var brown = module.exports.brown = function(mu, sigma, T, steps, path) {
   var B_t = [0];
@@ -104,13 +104,14 @@ var brown = module.exports.brown = function(mu, sigma, T, steps, path) {
 };
 
 /**
+ * Returns an array corresponding to the path of geometric Brownian motion (http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
  * (dS/S) = mu*dt + sigma*dW, W(t) ~ norm(0,sqrt(t))
- * @param {} S0
- * @param {} mu
- * @param {} sigmas
- * @param {} T
- * @param {} steps
- * @param {} path
+ * @param {number:positive} S0
+ * @param {number} mu
+ * @param {number:positive} sigma
+ * @param {number:positive} T
+ * @param {int:positive} steps
+ * @param {boolea} path
  */
 var GBM = module.exports.GBM = function(S0, mu, sigma, T, steps, path) {
   var S_t = [];
