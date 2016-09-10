@@ -1,4 +1,5 @@
 /* @flow */
+
 'use strict';
 
 /**
@@ -71,7 +72,6 @@ var norm = module.exports.norm = function(mu, sigma, num) {
   }
   return sample;
 };
-
 
 /**
  * Returns an array corresponding to the path of Brownian motion (http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
