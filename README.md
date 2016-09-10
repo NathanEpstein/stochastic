@@ -23,6 +23,8 @@ Parameters: mu is a real number, sigma is a strictly positive real number, and n
 
 ### stoch.brown(mu, sigma, T, steps, path)
 
+![](brown.png)
+
 Returns an array corresponding to the path of Brownian motion (http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
 
 Parameters: mu is a real number, sigma is a strictly positive real number, T is a strictly positive real number, steps is a positive integer, and path is a boolean. If path is false, returns only the value of the Brownian process at time T (defaults to true).
