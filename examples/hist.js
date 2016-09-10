@@ -1,4 +1,6 @@
 // hist(arr)
+// CTMC(transMatrix, T, start, path)
+var plot = require('plotter').plot;
 
 var stoch = require('../index');
 var report = require('./report');
@@ -16,3 +18,13 @@ var arr = Array
 var hist = stoch.hist(arr);
 
 console.log(hist);
+
+plot({
+    data:       {tick: hist},
+    filename:   'hist.png',
+    xlabel:     'bucket',
+    ylabel:     'count',
+    format:     'png'
+});
+
+

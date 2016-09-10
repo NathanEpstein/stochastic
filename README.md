@@ -63,6 +63,8 @@ Parameters: arr is an array of values and n is a positive integer designating th
 
 ### stoch.hist(arr)
 
+![](hist)
+
 Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
 
 Parameters: arr is an array of numeric values.

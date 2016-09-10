@@ -2,6 +2,7 @@
 
 'use strict';
 
+
 /**
  * Given a Poisson process, the probability of obtaining exactly n successes in N trials is given by the limit of a binomial distribution
  * http://en.wikipedia.org/wiki/Poisson_process
@@ -299,7 +300,7 @@ var pareto = module.exports.pareto = function(x_m, alpha) {
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
  * @param {Array<number>} arr 
  */
-var hist = module.exports.hist = function(arr) {
+var hist = module.exports.hist = function(arr: Array<number>) {
   var newArr = arr.slice().sort(function(a, b) {
     return a - b;
   });
