@@ -81,11 +81,15 @@ Parameters: arr is an array of numeric values.
 
 ### stoch.exp(lambda)
 
+    0.0989966257485027
+
 Generates an exponential random variable with rate parameter lambda.
 
 Parameters: lambda is a positive real number.
 
 ### stoch.pareto(x_m, alpha)
+
+    204.713876076419
 
 Generates a pareto random variables with paramters x_m and alpha.
 
