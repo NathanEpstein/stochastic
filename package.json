@@ -3,7 +3,15 @@
   "version": "0.0.14",
   "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
   "main": "index.js",
-  "keywords":["stochastic","histogram","Markov", "probability", "Brownian", "Normal", "Poisson"],
+  "keywords": [
+    "stochastic",
+    "histogram",
+    "Markov",
+    "probability",
+    "Brownian",
+    "Normal",
+    "Poisson"
+  ],
   "author": {
     "name": "Nathan Epstein",
     "email": "ne2210@columbia.edu"
@@ -12,5 +20,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/NathanEpstein/stochastic.git"
+  },
+  "devDependencies": {
+      "plotter": "^0.5.0"
   }
 }

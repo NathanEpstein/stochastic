@@ -1,35 +1,15 @@
 stochastic
 ==========
 
-![Geometric Brownian Motion](https://raw.githubusercontent.com/NathanEpstein/stochastic/master/GBM.png)
-
 ## Install
 `npm install stochastic --save`
 
 
-## Usage
+## Simple Usage
+
 ```javascript
 var stoch = require('stochastic');
 
-var normalArray = stoch.norm(mu,sigma,num);
-
-var brownianMotion = stoch.brown(mu, sigma, T, steps, path);
-
-var geometricBrownianMotion = stoch.GBM(S0, mu, sigma, T, steps, path);
-
-var discreteMarkovChain = stoch.DTMC(transMatrix, steps, start, path);
-
-var continuousMarkovChain = stoch.CTMC(transMatrix, T, start, path);
-
-var poissonProcess = stoch.poissP(lambda, T, path);
-
-var sample = stoch.sample(array, num);
-
-var histogram = stoch.hist(array);
-
-var exp = stoch.exp(lambda);
-
-var pareto = stoch.pareto(x_m,alpha);
 
 ```
 
@@ -49,6 +29,8 @@ Parameters: mu is a real number, sigma is a strictly positive real number, T is 
 
 ### stoch.GBM(S0, mu, sigma, T, steps, path)
 
+![GBM](GBM.png)
+
 Returns an array corresponding to the path of geometric Brownian motion (http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
 
 Parameters: S0 is a strictly positive real number, mu is a real number, sigma is a strictly positive real number, T is a strictly positive real number, steps is a positive integer, and path is a boolean. If path is false, returns only the value of the geometric Brownian process at time T (defaults to true).
@@ -60,6 +42,8 @@ Returns an array with the states at each step of the discrete-time Markov Chain 
 Parameters: transMatrix is a symmetric 2-d array, steps is a positive integer, start is a non-negative integer, and path is a boolean. If path is false, returns only the value of the final state (defaults to true).
 
 ### stoch.CTMC(transMatrix, T, start, path)
+
+![](CTMC.png)
 
 Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
 
