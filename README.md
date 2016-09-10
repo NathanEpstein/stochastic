@@ -17,7 +17,7 @@ var stoch = require('stochastic');
 
 ### stoch.norm(mu, sigma, num)
 
-    [ 2.7506185292807523, 2.4157924560357085, 0.9197631692215047 
+    [ 2.7506185292807523, 2.4157924560357085, 0.9197631692215047 ] 
 
 Returns an array with num i.i.d normal random variables (http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
 
@@ -56,6 +56,8 @@ Returns an object with the {key:value} pair {time:state} at each step of the con
 Parameters: transMatrix is a symmetric 2-d array, T is a strictly positive real number, start is a non-negative integer, and path is a boolean. If path is false, returns only the value of the final state (defaults to true).
 
 ### stoch.poissP(lambda, T, path)
+
+![](poissP.png)
 
 Returns an array with the times of each arrival in a Poisson Process (http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T.
 

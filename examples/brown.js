@@ -1,8 +1,6 @@
 // brown(mu, sigma, T, steps, path)
 
 var plot = require('plotter').plot;
-
-
 var stoch = require('../index');
 var report = require('./report');
 
