@@ -37,6 +37,8 @@ Parameters: S0 is a strictly positive real number, mu is a real number, sigma is
 
 ### stoch.DTMC(transMatrix, steps, start, path)
 
+![](DTMC.png)
+
 Returns an array with the states at each step of the discrete-time Markov Chain (http://en.wikipedia.org/wiki/Markov_chain) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
 
 Parameters: transMatrix is a symmetric 2-d array, steps is a positive integer, start is a non-negative integer, and path is a boolean. If path is false, returns only the value of the final state (defaults to true).
@@ -56,6 +58,8 @@ Returns an array with the times of each arrival in a Poisson Process (http://en.
 Parameters: lambda is a strictly positive real number, T is a strictly positive real number, and path is a boolean. If path is false, returns only the number of arrivals (defaults to true).
 
 ### stoch.sample(arr, n)
+
+    [ 85, 3, 13, 9, 99, 2, 3, 99, 21, 90 ]
 
 Generates a random sample (with replacement) from a user input array of observations. Number of observations is specified by the user.
 

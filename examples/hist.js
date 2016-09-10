@@ -1,5 +1,4 @@
 // hist(arr)
-// CTMC(transMatrix, T, start, path)
 var plot = require('plotter').plot;
 
 var stoch = require('../index');
