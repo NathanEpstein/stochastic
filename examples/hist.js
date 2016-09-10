@@ -9,7 +9,7 @@ var report = require('./report');
 var arr = Array
       .apply(
         null,
-        Array(20))
+        Array(200))
       .map(
         function(e, i, c) {
           return Math.round(Math.random() * 100);
@@ -17,10 +17,13 @@ var arr = Array
 
 var hist = stoch.hist(arr);
 
-console.log(hist);
+console.log(arr, hist);
+
 
 plot({
-    data:       {tick: hist},
+    data: Object.keys(hist).sort().reduce(function(p, c) { p.push(hist[c]); return p;  }, []),
+   style: 'boxes',
+    boxwidth: '0.5',
     filename:   'hist.png',
     xlabel:     'bucket',
     ylabel:     'count',
