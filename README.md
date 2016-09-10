@@ -17,6 +17,8 @@ var stoch = require('stochastic');
 
 ### stoch.norm(mu, sigma, num)
 
+    [ 2.7506185292807523, 2.4157924560357085, 0.9197631692215047 
+
 Returns an array with num i.i.d normal random variables (http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
 
 Parameters: mu is a real number, sigma is a strictly positive real number, and num is a positive integer (defaults to 1).
