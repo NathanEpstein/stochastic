@@ -9,6 +9,7 @@ stochastic
 
 ```javascript
 var stoch = require('stochastic');
+var pareto = stoch.pareto(+20.0, -1.0);
 
 
 ```

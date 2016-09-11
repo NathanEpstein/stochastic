@@ -11,7 +11,7 @@
  * @param {number:positive} T (time)
  * @param {boolean} path
  */
-var poissP = module.exports.poissP = function(lambda, T, path) {
+var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean) {
   var U, exp, N_t, t, n;
   N_t = [0];
   t = 0;
@@ -45,7 +45,7 @@ var poissP = module.exports.poissP = function(lambda, T, path) {
  * @param {number:positive} sigma
  * @param {int:positive} num
  */
-var norm = module.exports.norm = function(mu, sigma, num) {
+var norm = module.exports.norm = function(mu: number, sigma: number, num: number) {
   var U1, U2, x, y, z1, z2;
   var sample = [];
 
@@ -82,7 +82,7 @@ var norm = module.exports.norm = function(mu, sigma, num) {
  * @param {int:positive} steps
  * @param {boolean} path
  */
-var brown = module.exports.brown = function(mu, sigma, T, steps, path) {
+var brown = module.exports.brown = function(mu: number, sigma: number, T: number, steps: number, path: boolean) {
   var B_t = [0];
   var B = 0;
   var dt = T / steps;
@@ -113,9 +113,9 @@ var brown = module.exports.brown = function(mu, sigma, T, steps, path) {
  * @param {number:positive} sigma
  * @param {number:positive} T
  * @param {int:positive} steps
- * @param {boolea} path
+ * @param {boolean} path
  */
-var GBM = module.exports.GBM = function(S0, mu, sigma, T, steps, path) {
+var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T: number, steps: number, path: boolean) {
   var S_t = [];
 
   if (!(T > 0) || !(steps > 0)) {
@@ -138,10 +138,10 @@ var GBM = module.exports.GBM = function(S0, mu, sigma, T, steps, path) {
  * Discrete-time Markov chain (DTMC)
  * @param {Array.Array<number>} transMatrix
  * @param {int:positive} steps
- * @param {} start
- * @param {} path
+ * @param {number} start
+ * @param {boolean} path
  */
-var DTMC = module.exports.DTMC = function(transMatrix, steps, start, path) {
+var DTMC = module.exports.DTMC = function(transMatrix: number[][], steps: number, start: number, path: boolean) {
   //function to check if input is a valid transition matrix
   var isValid = function(matrix) {
     var n = matrix.length;
@@ -197,12 +197,13 @@ var DTMC = module.exports.DTMC = function(transMatrix, steps, start, path) {
 
 /**
  * Continuous-time Markov chain (CTMC)
- * @param {} transMatrix
- * @param {} T
- * @param {} start
- * @param {} path
+ * Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+ * @param {Array<Array<number>>} transMatrix
+ * @param {number} T
+ * @param {number} start
+ * @param {boolean} path
  */
-var CTMC = module.exports.CTMC = function(transMatrix, T, start, path) {
+var CTMC = module.exports.CTMC = function(transMatrix: number[][], T: number, start: number, path: boolean) {
   // function to determine if input is a valid CTMC transition matrix
   var isValid = function(matrix) {
     var n = matrix.length;
@@ -225,7 +226,7 @@ var CTMC = module.exports.CTMC = function(transMatrix, T, start, path) {
   }
 
   // initialize simulation of the CTMC
-  var fullPath = { 0: start };
+  var fullPath = { "0": start };
   var lastState = start;
   var stateRow = transMatrix[start];
   var t = 0;
@@ -269,7 +270,7 @@ var CTMC = module.exports.CTMC = function(transMatrix, T, start, path) {
  * @param {Array<number>} arr  
  * @param {int:positive} n 
  */
-var sample = module.exports.sample = function(arr, n) {
+var sample = module.exports.sample = function(arr: number[], n: number) {
   var samp = [];
   for (var i = 0; i < n; i++) {
     var index = Math.floor(Math.random() * arr.length);
@@ -283,7 +284,7 @@ var sample = module.exports.sample = function(arr, n) {
  * Generates an exponential random variable with rate parameter lambda.
  * @param {number:positive} lambda
  */
-var exp = module.exports.exp = function(lambda) {
+var exp = module.exports.exp = function(lambda: number) {
   return (-Math.log(Math.random()) / lambda);
 };
 
@@ -292,7 +293,7 @@ var exp = module.exports.exp = function(lambda) {
  * @param {number:positive} x_a
  * @param {number} alpha
  */
-var pareto = module.exports.pareto = function(x_m, alpha) {
+var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
   return (x_m / Math.pow(Math.random(), 1 / alpha));
 };
 

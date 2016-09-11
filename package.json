@@ -19,8 +19,8 @@
   "scripts": {
       "flow": "flow; test $? -eq 0 -o $? -eq 2",
       "lint": "./node_modules/.bin/eslint index.js",
+      "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
       "start": "./node_modules/.bin/babel-node index.js"
-
   },
   "license": "MIT",
   "repository": {
