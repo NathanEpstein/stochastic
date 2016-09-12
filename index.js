@@ -141,7 +141,7 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
  * @param {number} start
  * @param {boolean} path
  */
-var DTMC = module.exports.DTMC = function(transMatrix: number[][], steps: number, start: number, path: boolean) {
+var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, steps: number, start: number, path: boolean) {
   //function to check if input is a valid transition matrix
   var isValid = function(matrix) {
     var n = matrix.length;
@@ -203,7 +203,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: number[][], steps: number
  * @param {number} start
  * @param {boolean} path
  */
-var CTMC = module.exports.CTMC = function(transMatrix: number[][], T: number, start: number, path: boolean) {
+var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: number, start: number, path: boolean) {
   // function to determine if input is a valid CTMC transition matrix
   var isValid = function(matrix) {
     var n = matrix.length;
