@@ -1,6 +1,6 @@
 // sample(arr, n)
 
-var stoch = require('../index');
+var stoch = require('../src/index');
 var report = require('./report');
 
 // Random number between 0 and 100, excluding 25 - 75

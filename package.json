@@ -1,8 +1,8 @@
 {
-  "name": "stochastic",
+  "name": "@jwalsh/stochastic",
   "version": "0.0.14",
   "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
-  "main": "index.js",
+  "main": "dist/index.js",
   "keywords": [
     "stochastic",
     "histogram",
@@ -13,10 +13,11 @@
     "Poisson"
   ],
   "author": {
-    "name": "Nathan Epstein",
-    "email": "ne2210@columbia.edu"
+    "name": "Jason Walsh",
+    "email": "j@wal.sh"
   },
-  "scripts": {
+    "scripts": {
+      "build": "./node_modules/.bin/babel src/index.js > dist/index.js", 
       "flow": "flow; test $? -eq 0 -o $? -eq 2",
       "lint": "./node_modules/.bin/eslint index.js",
       "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
@@ -25,7 +26,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NathanEpstein/stochastic.git"
+    "url": "https://github.com/jwalsh/stochastic.git"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",

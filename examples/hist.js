@@ -1,7 +1,7 @@
 // hist(arr)
 var plot = require('plotter').plot;
 
-var stoch = require('../index');
+var stoch = require('../src/index');
 var report = require('./report');
 
 // [ 31, 63, 41, 60, 35...]

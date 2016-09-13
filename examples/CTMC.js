@@ -3,7 +3,7 @@
 // CTMC(transMatrix, T, start, path)
 var plot = require('plotter').plot;
 
-var stoch = require('../index');
+var stoch = require('../src/index');
 
 // switch to state 2 90% of the time; otherwise even probablity of staying or leaving state 2
 var transMatrixTwo = [

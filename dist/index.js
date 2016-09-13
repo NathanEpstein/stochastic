@@ -1,4 +1,3 @@
-/* @flow */
 'use strict';
 
 /**
@@ -9,7 +8,8 @@
  * @param {number:positive} T (time)
  * @param {boolean} path
  */
-var poissP = module.exports.poissP = function(lambda: number, T: number, path: ?boolean): Array<number> {
+
+var poissP = module.exports.poissP = function (lambda, T, path) {
   var U, exp, N_t, t, n;
   N_t = [0];
   t = 0;
@@ -42,7 +42,7 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: ?
  * @param {number:positive} sigma
  * @param {int:positive} num
  */
-var norm = module.exports.norm = function(mu: number, sigma: number, num: number): Array<number> {
+var norm = module.exports.norm = function (mu, sigma, num) {
   var U1, U2, x, y, z1, z2;
   var sample = [];
 
@@ -55,13 +55,13 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
     U2 = Math.random();
     z1 = Math.sqrt(-2 * Math.log(U1)) * Math.cos(2 * U2 * Math.PI);
     z2 = Math.sqrt(-2 * Math.log(U1)) * Math.sin(2 * U2 * Math.PI);
-    x = mu + (sigma * z1);
-    y = mu + (sigma * z2);
+    x = mu + sigma * z1;
+    y = mu + sigma * z2;
     return [x, y];
   }
 
-  if (typeof num === 'undefined' || num == 1 || (num % 1) != 0) {
-      return [boxMuller(mu, sigma)[0]];
+  if (typeof num === 'undefined' || num == 1 || num % 1 != 0) {
+    return [boxMuller(mu, sigma)[0]];
   }
 
   if (num / 2 % 2 != 0) sample.push(boxMuller(mu, sigma)[0]);
@@ -79,7 +79,7 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
  * @param {int:positive} steps
  * @param {boolean} path
  */
-var brown = module.exports.brown = function(mu: number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
+var brown = module.exports.brown = function (mu, sigma, T, steps, path) {
   var B_t = [0];
   var B = 0;
   var dt = T / steps;
@@ -90,11 +90,10 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
   }
 
   if (path == false) {
-      return [((mu * T) + (sigma * norm(0, Math.sqrt(T), 1)[0]))];
-  }
-  else {
+    return [mu * T + sigma * norm(0, Math.sqrt(T), 1)[0]];
+  } else {
     for (var i = 0; i < steps; i++) {
-        dB = (mu * dt) + (sigma * norm(0, Math.sqrt(dt), 1)[0]);
+      dB = mu * dt + sigma * norm(0, Math.sqrt(dt), 1)[0];
       B += dB;
       B_t.push(B);
     }
@@ -112,19 +111,19 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
  * @param {int:positive} steps
  * @param {boolean} path
  */
-var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
+var GBM = module.exports.GBM = function (S0, mu, sigma, T, steps, path) {
   var S_t = [];
-    var B_t = [0];
+  var B_t = [0];
 
   if (!(T > 0) || !(steps > 0)) {
     return B_t;
   }
 
   if (path == false) {
-      return [S0 * Math.exp((mu - (sigma * sigma / 2)) * T + (sigma * norm(0, Math.sqrt(T), 1)[0]))];
+    return [S0 * Math.exp((mu - sigma * sigma / 2) * T + sigma * norm(0, Math.sqrt(T), 1)[0])];
   } else {
-      var B_t = brown((mu - (sigma * sigma / 2)), sigma, T, steps, true);
-    B_t.forEach(function(B) {
+    var B_t = brown(mu - sigma * sigma / 2, sigma, T, steps, true);
+    B_t.forEach(function (B) {
       S_t.push(S0 * Math.exp(B));
     });
     return S_t;
@@ -138,9 +137,9 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
  * @param {number} start
  * @param {boolean} path
  */
-var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, steps: number, start: number, path: boolean) {
+var DTMC = module.exports.DTMC = function (transMatrix, steps, start, path) {
   //function to check if input is a valid transition matrix
-  var isValid = function(matrix) {
+  var isValid = function (matrix) {
     var n = matrix.length;
     for (var i = 0; i < n; i++) {
       var sum = 0;
@@ -153,7 +152,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
         }
         sum += matrix[i][j];
       }
-      var eps = (4 * Math.pow(10, -16));
+      var eps = 4 * Math.pow(10, -16);
       if (sum < 1 - eps || sum > 1 + eps) {
         return false;
       }
@@ -185,12 +184,10 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
   }
   if (path == false) {
     return fullPath[fullPath.length - 1];
-  }
-  else {
+  } else {
     return fullPath;
   }
 };
-
 
 /**
  * Continuous-time Markov chain (CTMC)
@@ -200,9 +197,9 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
  * @param {number} start
  * @param {boolean} path
  */
-var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: number, start: number, path: boolean) {
+var CTMC = module.exports.CTMC = function (transMatrix, T, start, path) {
   // function to determine if input is a valid CTMC transition matrix
-  var isValid = function(matrix) {
+  var isValid = function (matrix) {
     var n = matrix.length;
     for (var i = 0; i < n; i++) {
       if (matrix[i].length != n) {
@@ -242,8 +239,7 @@ var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: 
     if (t > T) {
       if (path == false) {
         return lastState;
-      }
-      else {
+      } else {
         return fullPath;
       }
     }
@@ -267,7 +263,7 @@ var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: 
  * @param {Array<number>} arr  
  * @param {int:positive} n 
  */
-var sample = module.exports.sample = function(arr: number[], n: number) {
+var sample = module.exports.sample = function (arr, n) {
   var samp = [];
   for (var i = 0; i < n; i++) {
     var index = Math.floor(Math.random() * arr.length);
@@ -281,8 +277,8 @@ var sample = module.exports.sample = function(arr: number[], n: number) {
  * Generates an exponential random variable with rate parameter lambda.
  * @param {number:positive} lambda
  */
-var exp = module.exports.exp = function(lambda: number) {
-  return (-Math.log(Math.random()) / lambda);
+var exp = module.exports.exp = function (lambda) {
+  return -Math.log(Math.random()) / lambda;
 };
 
 /**
@@ -290,16 +286,16 @@ var exp = module.exports.exp = function(lambda: number) {
  * @param {number:positive} x_a
  * @param {number} alpha
  */
-var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
-  return (x_m / Math.pow(Math.random(), 1 / alpha));
+var pareto = module.exports.pareto = function (x_m, alpha) {
+  return x_m / Math.pow(Math.random(), 1 / alpha);
 };
 
 /**
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
  * @param {Array<number>} arr 
  */
-var hist = module.exports.hist = function(arr: Array<number>) {
-  var newArr = arr.slice().sort(function(a, b) {
+var hist = module.exports.hist = function (arr) {
+  var newArr = arr.slice().sort(function (a, b) {
     return a - b;
   });
 
@@ -311,7 +307,7 @@ var hist = module.exports.hist = function(arr: Array<number>) {
   var obj = {};
   var keys = [];
   for (var i = 0; i < bins; i++) {
-    var key = min + (i * binSize);
+    var key = min + i * binSize;
     keys.push(key);
     obj[key] = 0;
   }
@@ -323,12 +319,10 @@ var hist = module.exports.hist = function(arr: Array<number>) {
       if (newArr[j] == newArr[newArr.length - 1]) {
         obj[keys[keys.length - 1]] += 1;
         break;
-      }
-      else if (newArr[j] < val + binSize) {
+      } else if (newArr[j] < val + binSize) {
         obj[keys[temp_key]] += 1;
         break;
-      }
-      else {
+      } else {
         temp_key += 1;
         val += binSize;
       }
@@ -337,3 +331,4 @@ var hist = module.exports.hist = function(arr: Array<number>) {
 
   return obj;
 };
+

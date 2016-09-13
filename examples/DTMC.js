@@ -2,7 +2,7 @@
 
 var plot = require('plotter').plot;
 
-var stoch = require('../index');
+var stoch = require('../src/index');
 var report = require('./report');
 
 var transMatrixTwo = [
