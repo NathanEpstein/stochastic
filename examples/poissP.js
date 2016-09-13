@@ -10,7 +10,7 @@ console.log(poissP);
 
 plot({
     data:       poissP,
-    filename:   'poissP.png',
+    filename:   'out/poissP.png',
     xlabel:     'index',
     ylabel:     'goal',
     format:     'png'

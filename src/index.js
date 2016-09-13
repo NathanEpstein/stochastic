@@ -3,12 +3,14 @@
 
 
 /**
- * Returns an array with the times of each arrival in a Poisson Process (http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T.
+ * Returns an array with the times of each arrival in a Poisson Process (http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T. ![poissP](out/poissP.png)
+ * ![poissP](out/poissP.png)
  * @param {number} lambda (rate)
  * @param {number} T time as positive number
  * @param {boolean} path 
  * @return {number[]} times of each arrival in a Poisson Process
  * @example var poissP = stoch.poissP(1, 60, true);
+ * ![](out/poissP.png)
  */
 var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean): Array <number> {
   var U, exp, N_t, t, n;
@@ -75,6 +77,7 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
 
 /**
  * Returns an array corresponding to the path of Brownian motion (http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
+ * ![brown](out/brown.png)
  * @param {number} mu drift parameter (a real number)
  * @param {number:positive} sigma volitility parameter (strictly positive real) 
  * @param {number:positive} T time (strictly positive real)
@@ -108,7 +111,7 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
 /**
  * Returns an array corresponding to the path of geometric Brownian motion (http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
  * (dS/S) = mu*dt + sigma*dW, W(t) ~ norm(0,sqrt(t))
- * ![GBM](GBM.png)
+ * ![GBM](out/GBM.png)
  * @param {number:positive} S0 initialized process value 
  * @param {number} mu drift parameter
  * @param {number:positive} sigma volitility parameter (strictly positive real)
@@ -138,6 +141,7 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
 
 /**
  * Returns an array with the states at each step of the discrete-time Markov Chain (http://en.wikipedia.org/wiki/Markov_chain) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+ * ![DTMC](out/DTMC.png)
  * @param {Array.Array<number>} transMatrix
  * @param {int:positive} steps
  * @param {number} start
@@ -200,6 +204,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
 
 /**
  * Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+ * ![CTMC](out/CTMC.png)
  * @param {Array<Array<number>>} transMatrix
  * @param {number} T
  * @param {number} start
@@ -305,6 +310,7 @@ var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
 
 /**
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
+ * ![hist](out/hist.png)
  * @param {Array<number>} arr
  * @returns {Object} histogram
  */

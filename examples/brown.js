@@ -11,7 +11,7 @@ console.log(brown);
 
 plot({
     data:       brown,
-    filename:   'brown.png',
+    filename:   'out/brown.png',
     xlabel:     'index',
     ylabel:     'goal',
     format:     'png'

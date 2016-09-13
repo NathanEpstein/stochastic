@@ -23,7 +23,7 @@ plot({
     data: Object.keys(hist).sort().reduce(function(p, c) { p.push(hist[c]); return p;  }, []),
    style: 'boxes',
     boxwidth: '0.5',
-    filename:   'hist.png',
+    filename:   'out/hist.png',
     xlabel:     'bucket',
     ylabel:     'count',
     format:     'png'
