@@ -5,10 +5,10 @@
 /**
  * Given a Poisson process, the probability of obtaining exactly n successes in N trials is given by the limit of a binomial distribution
  * http://en.wikipedia.org/wiki/Poisson_process
- * @return {Array<nuber:positive>} An array with the times of each arrival in a Poisson Process
- * @param {number:positive} lambda (rate)
- * @param {number:positive} T (time)
- * @param {boolean} path
+ * @return {Array<nuber>} An array with the times of each arrival in a Poisson Process
+ * @param {number} lambda (rate)
+ * @param {number} T time as positive number
+ * @param {boolean} path 
  */
 var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean): Array <number> {
   var U, exp, N_t, t, n;
@@ -40,8 +40,8 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
 /**
  * A normal distribution in a variate X with mean mu and variance sigma^2 is a statistic distribution with probability density function
  * @param {number} mu
- * @param {number:positive} sigma
- * @param {int:positive} num
+ * @param {number} sigma variance as positive number
+ * @param {number} num positive integer
  */
 var norm = module.exports.norm = function(mu: number, sigma: number, num: number): Array<number> {
   var U1, U2, x, y, z1, z2;

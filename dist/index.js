@@ -331,4 +331,3 @@ var hist = module.exports.hist = function (arr) {
 
   return obj;
 };
-
