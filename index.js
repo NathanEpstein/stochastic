@@ -1,7 +1,5 @@
 /* @flow */
-
 'use strict';
-
 
 /**
  * Given a Poisson process, the probability of obtaining exactly n successes in N trials is given by the limit of a binomial distribution
@@ -11,7 +9,7 @@
  * @param {number:positive} T (time)
  * @param {boolean} path
  */
-var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean) {
+var poissP = module.exports.poissP = function(lambda: number, T: number, path: ?boolean): Array<number> | number {
   var U, exp, N_t, t, n;
   N_t = [0];
   t = 0;
