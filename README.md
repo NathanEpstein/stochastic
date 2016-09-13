@@ -2,7 +2,7 @@
 
 ## Install
 
-`npm install stochastic --save`
+`npm install @jwalsh/stochastic --save`
 
 ## Simple Usage
 
@@ -17,7 +17,8 @@ var pareto = stoch.pareto(+20.0, -1.0);
 
 ### poissP
 
-Returns an array with the times of each arrival in a Poisson Process (<http://en.wikipedia.org/wiki/Poisson_process>) with rate lambda until time T. ![poissP](out/poissP.png)
+Returns an array with the times of each arrival in a Poisson Process (<http://en.wikipedia.org/wiki/Poisson_process>) with rate lambda until time T. 
+
 ![poissP](out/poissP.png)
 
 **Parameters**
@@ -49,6 +50,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 ### brown
 
 Returns an array corresponding to the path of Brownian motion (<http://en.wikipedia.org/wiki/Wiener_process#Related_processes>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i \* (T/steps).
+
 ![brown](out/brown.png)
 
 **Parameters**
@@ -66,8 +68,8 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ### GBM
 
-Returns an array corresponding to the path of geometric Brownian motion (<http://en.wikipedia.org/wiki/Geometric_Brownian_motion>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i _ (T/steps).
-(dS/S) = mu_dt + sigma\*dW, W(t) ~ norm(0,sqrt(t))
+Returns an array corresponding to the path of geometric Brownian motion (<http://en.wikipedia.org/wiki/Geometric_Brownian_motion>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i \* (T/steps).
+
 ![GBM](out/GBM.png)
 
 **Parameters**
@@ -80,11 +82,12 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 ### DTMC
 
 Returns an array with the states at each step of the discrete-time Markov Chain (<http://en.wikipedia.org/wiki/Markov_chain>) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+
 ![DTMC](out/DTMC.png)
 
 **Parameters**
 
--   `transMatrix` **Array.Array&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+-   `transMatrix` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** 
 -   `start` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
@@ -93,6 +96,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 ### CTMC
 
 Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (<http://en.wikipedia.org/wiki/Continuous-time_Markov_chain>) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+
 ![CTMC](out/CTMC.png)
 
 **Parameters**
@@ -133,6 +137,7 @@ Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 ### hist
 
 Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
+
 ![hist](out/hist.png)
 
 **Parameters**
