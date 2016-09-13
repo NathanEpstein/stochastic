@@ -1,6 +1,6 @@
 {
   "name": "@jwalsh/stochastic",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
   "main": "dist/index.js",
   "keywords": [
@@ -16,12 +16,12 @@
     "name": "Jason Walsh",
     "email": "j@wal.sh"
   },
-    "scripts": {
-      "build": "./node_modules/.bin/babel src/index.js > dist/index.js", 
-      "flow": "flow; test $? -eq 0 -o $? -eq 2",
-      "lint": "./node_modules/.bin/eslint index.js",
-      "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
-      "start": "./node_modules/.bin/babel-node index.js"
+  "scripts": {
+    "build": "./node_modules/.bin/babel src/index.js > dist/index.js",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "lint": "./node_modules/.bin/eslint index.js",
+    "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
+    "start": "./node_modules/.bin/babel-node index.js"
   },
   "license": "MIT",
   "repository": {
