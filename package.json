@@ -1,5 +1,5 @@
 {
-  "name": "@jwalsh/stochastic",
+  "name": "@defrecord/stochastic",
   "version": "0.1.0",
   "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
   "main": "dist/index.js",
