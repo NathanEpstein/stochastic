@@ -18,7 +18,7 @@ console.log(DTMC);
 
 plot({
     data:       {tick: DTMC},
-    filename:   'DTMC.png',
+    filename:   'out/DTMC.png',
     xlabel:     'time',
     ylabel:     'state',
     format:     'png'

@@ -3,12 +3,12 @@
 
 
 /**
- * Given a Poisson process, the probability of obtaining exactly n successes in N trials is given by the limit of a binomial distribution
- * http://en.wikipedia.org/wiki/Poisson_process
- * @return {Array<nuber>} An array with the times of each arrival in a Poisson Process
+ * Returns an array with the times of each arrival in a Poisson Process (http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T.
  * @param {number} lambda (rate)
  * @param {number} T time as positive number
  * @param {boolean} path 
+ * @return {number[]} times of each arrival in a Poisson Process
+ * @example var poissP = stoch.poissP(1, 60, true);
  */
 var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean): Array <number> {
   var U, exp, N_t, t, n;
@@ -38,10 +38,11 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
 };
 
 /**
- * A normal distribution in a variate X with mean mu and variance sigma^2 is a statistic distribution with probability density function
- * @param {number} mu
- * @param {number} sigma variance as positive number
- * @param {number} num positive integer
+ * Returns an array with num normal random variables (http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
+ * @param {number} mu the mean or expectation of the distribution (and also its median and mode)
+ * @param {number} sigma standard deviation as positive number
+ * @param {number} num a positive integer (defaults to 1)
+ * @returns {number[]} normal randrom values 
  */
 var norm = module.exports.norm = function(mu: number, sigma: number, num: number): Array<number> {
   var U1, U2, x, y, z1, z2;
@@ -74,11 +75,12 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
 
 /**
  * Returns an array corresponding to the path of Brownian motion (http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
- * @param {number} mu
- * @param {number:positive} sigma
- * @param {number:positive} T
- * @param {int:positive} steps
+ * @param {number} mu drift parameter (a real number)
+ * @param {number:positive} sigma volitility parameter (strictly positive real) 
+ * @param {number:positive} T time (strictly positive real)
+ * @param {int:positive} steps 
  * @param {boolean} path
+ * @return {number[]} Brownian motion path
  */
 var brown = module.exports.brown = function(mu: number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
   var B_t = [0];
@@ -106,12 +108,14 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
 /**
  * Returns an array corresponding to the path of geometric Brownian motion (http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
  * (dS/S) = mu*dt + sigma*dW, W(t) ~ norm(0,sqrt(t))
- * @param {number:positive} S0
- * @param {number} mu
- * @param {number:positive} sigma
- * @param {number:positive} T
- * @param {int:positive} steps
+ * ![GBM](GBM.png)
+ * @param {number:positive} S0 initialized process value 
+ * @param {number} mu drift parameter
+ * @param {number:positive} sigma volitility parameter (strictly positive real)
+ * @param {number:positive} T time (strictly positive real)
+ * @param {int:positive} steps (positive integer)
  * @param {boolean} path
+ * @returns {number[]} geometric Brownian motion
  */
 var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
   var S_t = [];
@@ -133,13 +137,14 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
 };
 
 /**
- * Discrete-time Markov chain (DTMC)
+ * Returns an array with the states at each step of the discrete-time Markov Chain (http://en.wikipedia.org/wiki/Markov_chain) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * @param {Array.Array<number>} transMatrix
  * @param {int:positive} steps
  * @param {number} start
  * @param {boolean} path
+ * @returns {number[]}
  */
-var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, steps: number, start: number, path: boolean) {
+var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, steps: number, start: number, path: boolean): Array<number> {
   //function to check if input is a valid transition matrix
   var isValid = function(matrix) {
     var n = matrix.length;
@@ -194,12 +199,12 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
 
 
 /**
- * Continuous-time Markov chain (CTMC)
  * Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * @param {Array<Array<number>>} transMatrix
  * @param {number} T
  * @param {number} start
  * @param {boolean} path
+ * @returns {Object} Continuous-time Markov chain
  */
 var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: number, start: number, path: boolean) {
   // function to determine if input is a valid CTMC transition matrix
@@ -265,8 +270,9 @@ var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: 
 
 /**
  * Generates a random sample (with replacement) from a user input array of observations. Number of observations is specified by the user.
- * @param {Array<number>} arr  
- * @param {int:positive} n 
+ * @param {number[]} arr
+ * @param {int:positive} n
+ * @returns {number[]} random sample 
  */
 var sample = module.exports.sample = function(arr: number[], n: number) {
   var samp = [];
@@ -281,15 +287,17 @@ var sample = module.exports.sample = function(arr: number[], n: number) {
 /**
  * Generates an exponential random variable with rate parameter lambda.
  * @param {number:positive} lambda
+ * @returns {number} variable
  */
 var exp = module.exports.exp = function(lambda: number) {
   return (-Math.log(Math.random()) / lambda);
 };
 
 /**
- * The distribution with probability density function 
+ * Generates a pareto random variables with paramters x_m and alpha.
  * @param {number:positive} x_a
  * @param {number} alpha
+ * @returns {number} distribution
  */
 var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
   return (x_m / Math.pow(Math.random(), 1 / alpha));
@@ -297,7 +305,8 @@ var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
 
 /**
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
- * @param {Array<number>} arr 
+ * @param {Array<number>} arr
+ * @returns {Object} histogram
  */
 var hist = module.exports.hist = function(arr: Array<number>) {
   var newArr = arr.slice().sort(function(a, b) {

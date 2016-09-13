@@ -12,7 +12,7 @@ Math.sign = Math.sign || function(x) {
     return x > 0 ? 1 : -1;
 };
 
-let isNonNegative = {n} {
+let isNonNegative = (n) => {
     let s = Math.sign(n);
     return s === 1 || s === 0;
 }

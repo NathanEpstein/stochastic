@@ -9,7 +9,7 @@ console.log(GBM);
 
 plot({
     data:       GBM,
-    filename:   'GBM.png',
+    filename:   'out/GBM.png',
     xlabel:     'index',
     ylabel:     'GBM',
     format:     'png'

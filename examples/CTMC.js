@@ -15,7 +15,7 @@ var CTMC = stoch.CTMC(transMatrixTwo, 20, 0, true);
 
 plot({
     data:       {tick: CTMC},
-    filename:   'CTMC.png',
+    filename:   'out/CTMC.png',
     xlabel:     'time',
     ylabel:     'state',
     format:     'png'
