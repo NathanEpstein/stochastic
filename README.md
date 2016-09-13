@@ -17,49 +17,70 @@ var pareto = stoch.pareto(+20.0, -1.0);
 
 ### poissP
 
-Given a Poisson process, the probability of obtaining exactly n successes in N trials is given by the limit of a binomial distribution
-<http://en.wikipedia.org/wiki/Poisson_process>
+Returns an array with the times of each arrival in a Poisson Process (<http://en.wikipedia.org/wiki/Poisson_process>) with rate lambda until time T. ![poissP](out/poissP.png)
+![poissP](out/poissP.png)
 
 **Parameters**
 
 -   `lambda` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (rate)
 -   `T` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** time as positive number
--   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+-   `path` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]**  (optional, default `true`)
 
-Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;nuber>** An array with the times of each arrival in a Poisson Process
+**Examples**
+
+```javascript
+var poissP = stoch.poissP(1, 60, true);
+```
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** times of each arrival in a Poisson Process
 
 ### norm
 
-A normal distribution in a variate X with mean mu and variance sigma^2 is a statistic distribution with probability density function
+Returns an array with num normal random variables (<http://en.wikipedia.org/wiki/Normal_distribution>) of mean mu and standard deviation sigma.
 
 **Parameters**
 
--   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
--   `sigma` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** variance as positive number
--   `num` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** positive integer
+-   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the mean or expectation of the distribution (and also its median and mode)
+-   `sigma` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** standard deviation as positive number
+-   `num` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** a positive integer (optional, default `1`)
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** normal randrom values
 
 ### brown
 
 Returns an array corresponding to the path of Brownian motion (<http://en.wikipedia.org/wiki/Wiener_process#Related_processes>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i \* (T/steps).
+![brown](out/brown.png)
 
 **Parameters**
 
--   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+-   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** drift parameter (a real number)
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+**Examples**
+
+```javascript
+var brown = stoch.brown(1.0, +5.0, +60, 30, true);
+```
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Brownian motion path
 
 ### GBM
 
 Returns an array corresponding to the path of geometric Brownian motion (<http://en.wikipedia.org/wiki/Geometric_Brownian_motion>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i _ (T/steps).
 (dS/S) = mu_dt + sigma\*dW, W(t) ~ norm(0,sqrt(t))
+![GBM](out/GBM.png)
 
 **Parameters**
 
--   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+-   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** drift parameter
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** geometric Brownian motion
 
 ### DTMC
 
-Discrete-time Markov chain (DTMC)
+Returns an array with the states at each step of the discrete-time Markov Chain (<http://en.wikipedia.org/wiki/Markov_chain>) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+![DTMC](out/DTMC.png)
 
 **Parameters**
 
@@ -67,10 +88,12 @@ Discrete-time Markov chain (DTMC)
 -   `start` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
 ### CTMC
 
-Continuous-time Markov chain (CTMC)
 Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (<http://en.wikipedia.org/wiki/Continuous-time_Markov_chain>) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+![CTMC](out/CTMC.png)
 
 **Parameters**
 
@@ -78,6 +101,8 @@ Returns an object with the {key:value} pair {time:state} at each step of the con
 -   `T` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 -   `start` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Continuous-time Markov chain
 
 ### sample
 
@@ -87,25 +112,34 @@ Generates a random sample (with replacement) from a user input array of observat
 
 -   `arr` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
 
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** random sample
+
 ### exp
 
 Generates an exponential random variable with rate parameter lambda.
 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** variable
+
 ### pareto
 
-The distribution with probability density function
+Generates a pareto random variables with paramters x_m and alpha.
 
 **Parameters**
 
 -   `alpha` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
+Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distribution
+
 ### hist
 
 Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
+![hist](out/hist.png)
 
 **Parameters**
 
 -   `arr` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** histogram
 
 ## License
 

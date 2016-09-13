@@ -17,7 +17,7 @@
     "email": "j@wal.sh"
   },
   "scripts": {
-      "docs": "./node_modules/.bin/documentation readme -s API",
+      "docs": "./node_modules/.bin/documentation readme -s API src/index.js",
       "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
       "flow": "flow; test $? -eq 0 -o $? -eq 2",
       "lint": "./node_modules/.bin/eslint src",

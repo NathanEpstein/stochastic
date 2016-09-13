@@ -7,10 +7,9 @@
  * ![poissP](out/poissP.png)
  * @param {number} lambda (rate)
  * @param {number} T time as positive number
- * @param {boolean} path 
- * @return {number[]} times of each arrival in a Poisson Process
+ * @param {boolean} [path=true] 
+ * @returns {number[]} times of each arrival in a Poisson Process
  * @example var poissP = stoch.poissP(1, 60, true);
- * ![](out/poissP.png)
  */
 var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean): Array <number> {
   var U, exp, N_t, t, n;
@@ -43,7 +42,7 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
  * Returns an array with num normal random variables (http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
  * @param {number} mu the mean or expectation of the distribution (and also its median and mode)
  * @param {number} sigma standard deviation as positive number
- * @param {number} num a positive integer (defaults to 1)
+ * @param {number} [num=1] a positive integer
  * @returns {number[]} normal randrom values 
  */
 var norm = module.exports.norm = function(mu: number, sigma: number, num: number): Array<number> {
@@ -84,6 +83,7 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
  * @param {int:positive} steps 
  * @param {boolean} path
  * @return {number[]} Brownian motion path
+ * @example var brown = stoch.brown(1.0, +5.0, +60, 30, true);
  */
 var brown = module.exports.brown = function(mu: number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
   var B_t = [0];
