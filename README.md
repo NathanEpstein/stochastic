@@ -45,6 +45,12 @@ Returns an array with num normal random variables (<http://en.wikipedia.org/wiki
 -   `sigma` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** standard deviation as positive number
 -   `num` **\[[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)]** a positive integer (optional, default `1`)
 
+**Examples**
+
+```javascript
+var norm = stoch.norm(1, 1, 3);
+```
+
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** normal randrom values
 
 ### brown
@@ -56,7 +62,10 @@ Returns an array corresponding to the path of Brownian motion (<http://en.wikipe
 **Parameters**
 
 -   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** drift parameter (a real number)
--   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+-   `sigma` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** volitility parameter (strictly positive real)
+-   `T` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** time (strictly positive real)
+-   `steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive integer)
+-   `path` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]**  (optional, default `true`)
 
 **Examples**
 
@@ -68,14 +77,24 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ### GBM
 
-Returns an array corresponding to the path of geometric Brownian motion (<http://en.wikipedia.org/wiki/Geometric_Brownian_motion>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i \* (T/steps).
+Returns an array correspondiing to the path of geometric Brownian motion (<http://en.wikipedia.org/wiki/Geometric_Brownian_motion>) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i \* (T/steps).
 
 ![GBM](out/GBM.png)
 
 **Parameters**
 
+-   `S0` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** initialized process value
 -   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** drift parameter
--   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+-   `sigma` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** volitility parameter (strictly positive real)
+-   `T` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** time (strictly positive real)
+-   `steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive integer)
+-   `path` **\[[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)]**  (optional, default `true`)
+
+**Examples**
+
+```javascript
+var GBM = stoch.GBM(1.0, -0.25, 2.0, 4.0, 1000, true);
+```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** geometric Brownian motion
 
@@ -88,8 +107,15 @@ Returns an array with the states at each step of the discrete-time Markov Chain 
 **Parameters**
 
 -   `transMatrix` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>>** 
+-   `steps` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive integer)
 -   `start` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+
+**Examples**
+
+```javascript
+var DTMC = stoch.DTMC([[0,1],[1,0]], 20, 0, true);
+```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
 
@@ -106,6 +132,12 @@ Returns an object with the {key:value} pair {time:state} at each step of the con
 -   `start` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 -   `path` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
+**Examples**
+
+```javascript
+var CTMC = stoch.CTMC([[1,0],[0,1]], 20, 0, true);
+```
+
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Continuous-time Markov chain
 
 ### sample
@@ -115,12 +147,29 @@ Generates a random sample (with replacement) from a user input array of observat
 **Parameters**
 
 -   `arr` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+-   `n` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive integer)
+
+**Examples**
+
+```javascript
+var sample = stoch.sample([1,2,3,4,5], +10);
+```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** random sample
 
 ### exp
 
 Generates an exponential random variable with rate parameter lambda.
+
+**Parameters**
+
+-   `lambda` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive)
+
+**Examples**
+
+```javascript
+var exp = stoch.exp(20);
+```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** variable
 
@@ -130,7 +179,14 @@ Generates a pareto random variables with paramters x_m and alpha.
 
 **Parameters**
 
+-   `x_a` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive)
 -   `alpha` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
+**Examples**
+
+```javascript
+var pareto = stoch.pareto(+20.0, -1.0);
+```
 
 Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** distribution
 
@@ -143,6 +199,12 @@ Generates a histogram object from an array of data. Keys denote the lower bound 
 **Parameters**
 
 -   `arr` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
+
+**Examples**
+
+```javascript
+var hist = stoch.hist([1,2,2,3,4,4,5,6,6]);
+```
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** histogram
 

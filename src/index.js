@@ -6,11 +6,11 @@
  * Returns an array with the times of each arrival in a Poisson Process (http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T. 
  * 
  * ![poissP](out/poissP.png)
+ * @example var poissP = stoch.poissP(1, 60, true);
  * @param {number} lambda (rate)
  * @param {number} T time as positive number
  * @param {boolean} [path=true] 
  * @returns {number[]} times of each arrival in a Poisson Process
- * @example var poissP = stoch.poissP(1, 60, true);
  */
 var poissP = module.exports.poissP = function(lambda: number, T: number, path: boolean): Array<number> {
   var U, exp, N_t, t, n;
@@ -41,6 +41,7 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
 
 /**
  * Returns an array with num normal random variables (http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
+ * @example var norm = stoch.norm(1, 1, 3);
  * @param {number} mu the mean or expectation of the distribution (and also its median and mode)
  * @param {number} sigma standard deviation as positive number
  * @param {number} [num=1] a positive integer
@@ -79,13 +80,13 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
  * Returns an array corresponding to the path of Brownian motion (http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
  * 
  * ![brown](out/brown.png)
- * @param {number} mu drift parameter (a real number)
- * @param {number:positive} sigma volitility parameter (strictly positive real) 
- * @param {number:positive} T time (strictly positive real)
- * @param {int:positive} steps 
- * @param {boolean} path
- * @return {number[]} Brownian motion path
  * @example var brown = stoch.brown(1.0, +5.0, +60, 30, true);
+ * @param {number} mu drift parameter (a real number)
+ * @param {number} sigma volitility parameter (strictly positive real) 
+ * @param {number} T time (strictly positive real)
+ * @param {number} steps (positive integer) 
+ * @param {boolean} [path=true]
+ * @return {number[]} Brownian motion path
  */
 var brown = module.exports.brown = function(mu: number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
   var B_t = [0];
@@ -111,15 +112,16 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
 };
 
 /**
- * Returns an array corresponding to the path of geometric Brownian motion (http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
+ * Returns an array correspondiing to the path of geometric Brownian motion (http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
  * 
  * ![GBM](out/GBM.png)
- * @param {number:positive} S0 initialized process value 
+ * @example var GBM = stoch.GBM(1.0, -0.25, 2.0, 4.0, 1000, true);
+ * @param {number} S0 initialized process value
  * @param {number} mu drift parameter
- * @param {number:positive} sigma volitility parameter (strictly positive real)
- * @param {number:positive} T time (strictly positive real)
- * @param {int:positive} steps (positive integer)
- * @param {boolean} path
+ * @param {number} sigma volitility parameter (strictly positive real)
+ * @param {number} T time (strictly positive real)
+ * @param {number} steps (positive integer)
+ * @param {boolean} [path=true]
  * @returns {number[]} geometric Brownian motion
  */
 var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T: number, steps: number, path: boolean): Array<number> {
@@ -145,8 +147,9 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
  * Returns an array with the states at each step of the discrete-time Markov Chain (http://en.wikipedia.org/wiki/Markov_chain) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * 
  * ![DTMC](out/DTMC.png)
+ * @example var DTMC = stoch.DTMC([[0,1],[1,0]], 20, 0, true);
  * @param {Array<Array<number>>} transMatrix
- * @param {int:positive} steps
+ * @param {number} steps (positive integer)
  * @param {number} start
  * @param {boolean} path
  * @returns {number[]}
@@ -209,6 +212,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
  * Returns an object with the {key:value} pair {time:state} at each step of the continuous-time Markov Chain (http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * 
  * ![CTMC](out/CTMC.png)
+ * @example var CTMC = stoch.CTMC([[1,0],[0,1]], 20, 0, true);
  * @param {Array<Array<number>>} transMatrix
  * @param {number} T
  * @param {number} start
@@ -279,8 +283,9 @@ var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: 
 
 /**
  * Generates a random sample (with replacement) from a user input array of observations. Number of observations is specified by the user.
+ * @example var sample = stoch.sample([1,2,3,4,5], +10);
  * @param {number[]} arr
- * @param {int:positive} n
+ * @param {number} n (positive integer)
  * @returns {number[]} random sample 
  */
 var sample = module.exports.sample = function(arr: number[], n: number) {
@@ -295,7 +300,8 @@ var sample = module.exports.sample = function(arr: number[], n: number) {
 
 /**
  * Generates an exponential random variable with rate parameter lambda.
- * @param {number:positive} lambda
+ * @example var exp = stoch.exp(20);
+ * @param {number} lambda (positive)
  * @returns {number} variable
  */
 var exp = module.exports.exp = function(lambda: number) {
@@ -304,7 +310,8 @@ var exp = module.exports.exp = function(lambda: number) {
 
 /**
  * Generates a pareto random variables with paramters x_m and alpha.
- * @param {number:positive} x_a
+ * @example var pareto = stoch.pareto(+20.0, -1.0);
+ * @param {number} x_a (positive)
  * @param {number} alpha
  * @returns {number} distribution
  */
@@ -316,6 +323,7 @@ var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
  * 
  * ![hist](out/hist.png)
+ * @example var hist = stoch.hist([1,2,2,3,4,4,5,6,6]);
  * @param {Array<number>} arr
  * @returns {Object} histogram
  */
