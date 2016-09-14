@@ -45,7 +45,7 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
  * @param {number} mu the mean or expectation of the distribution (and also its median and mode)
  * @param {number} sigma standard deviation as positive number
  * @param {number} [num=1] a positive integer
- * @returns {number[]} normal randrom values 
+ * @returns {number[]} normal random values 
  */
 var norm = module.exports.norm = function(mu: number, sigma: number, num: number): Array<number> {
   var U1, U2, x, y, z1, z2;
@@ -82,7 +82,7 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
  * ![brown](out/brown.png)
  * @example var brown = stoch.brown(1.0, +5.0, +60, 30, true);
  * @param {number} mu drift parameter (a real number)
- * @param {number} sigma volitility parameter (strictly positive real) 
+ * @param {number} sigma volatility parameter (strictly positive real) 
  * @param {number} T time (strictly positive real)
  * @param {number} steps (positive integer) 
  * @param {boolean} [path=true]
@@ -112,13 +112,13 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
 };
 
 /**
- * Returns an array correspondiing to the path of [geometric Brownian motion](http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
+ * Returns an array corresponding to the path of [geometric Brownian motion](http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
  * 
  * ![GBM](out/GBM.png)
  * @example var GBM = stoch.GBM(1.0, -0.25, 2.0, 4.0, 1000, true);
  * @param {number} S0 initialized process value
  * @param {number} mu drift parameter
- * @param {number} sigma volitility parameter (strictly positive real)
+ * @param {number} sigma volatility parameter (strictly positive real)
  * @param {number} T time (strictly positive real)
  * @param {number} steps (positive integer)
  * @param {boolean} [path=true]
@@ -216,7 +216,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
  * @param {Array<Array<number>>} transMatrix
  * @param {number} T
  * @param {number} start
- * @param {boolean} path
+ * @param {boolean} [path=true]
  * @returns {Object} Continuous-time Markov chain
  */
 var CTMC = module.exports.CTMC = function(transMatrix: Array<Array<number>>, T: number, start: number, path: boolean) {
@@ -309,7 +309,7 @@ var exp = module.exports.exp = function(lambda: number) {
 };
 
 /**
- * Generates a pareto random variables with paramters x_m and alpha.
+ * Generates a Pareto random variables with parameters x_m and alpha.
  * @example var pareto = stoch.pareto(+20.0, -1.0);
  * @param {number} x_a (positive)
  * @param {number} alpha
