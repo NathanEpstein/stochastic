@@ -11,7 +11,8 @@ var transMatrixTwo = [
         [0.5, 0.5]
 ];
 
-var CTMC = stoch.CTMC(transMatrixTwo, 20, 0, true);
+// var CTMC = stoch.CTMC(transMatrixTwo, 20, 0, true);
+var CTMC = stoch.CTMC([[1,0],[0,1]], 20, 0, true);
 
 plot({
     data:       {tick: CTMC},
