@@ -1,7 +1,7 @@
 {
   "name": "@jwalsh/stochastic",
   "version": "0.1.3",
-  "description": "Simple functions for simulating Poisson Processes, Brownian motion, geometric Brownian motion, discrete/continuous-time Markov chains, and normal random variables",
+  "description": "Simulate Poisson Processes, Brownian motion, Markov chains, and normal random variables",
   "main": "dist/index.js",
   "keywords": [
     "stochastic",
