@@ -114,7 +114,7 @@ Returns an array with the states at each step of the [discrete-time Markov Chain
 **Examples**
 
 ```javascript
-var DTMC = stoch.DTMC([[0,1],[1,0]], 20, 0, true);
+var DTMC = stoch.DTMC([[0,1,0],[0,0,1],[1,0,0]], 20, 0, true);
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** 
@@ -135,7 +135,7 @@ Returns an object with the {key:value} pair {time:state} at each step of the [co
 **Examples**
 
 ```javascript
-var CTMC = stoch.CTMC([[1,0],[0,1]], 20, 0, true);
+var CTMC = stoch.CTMC([[0,1,0],[0,0,1],[1,0,0]], 20, 0, true);
 ```
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Continuous-time Markov chain

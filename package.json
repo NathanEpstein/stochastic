@@ -21,7 +21,7 @@
       "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
       "flow": "flow; test $? -eq 0 -o $? -eq 2",
       "lint": "./node_modules/.bin/eslint src",
-      "prepublish": "./node_modules/.bin/babel src --out-dir dist",
+      "prepublish": "./node_modules/.bin/babel src --out-dir dist && npm run docs",
       "release": "npm version patch && git push && git push origin --tags && npm publish --access public",
       "start": "./node_modules/.bin/babel-node src/index.js",
       "test": "./node_modules/.bin/babel-node tests/index.js"
