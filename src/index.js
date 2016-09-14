@@ -147,7 +147,7 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
  * Returns an array with the states at each step of the [discrete-time Markov Chain](http://en.wikipedia.org/wiki/Markov_chain) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * 
  * ![DTMC](out/DTMC.png)
- * @example var DTMC = stoch.DTMC([[0,1],[1,0]], 20, 0, true);
+ * @example var DTMC = stoch.DTMC([[0,1,0],[0,0,1],[1,0,0]], 20, 0, true);
  * @param {Array<Array<number>>} transMatrix
  * @param {number} steps (positive integer)
  * @param {number} start
@@ -212,7 +212,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
  * Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * 
  * ![CTMC](out/CTMC.png)
- * @example var CTMC = stoch.CTMC([[1,0],[0,1]], 20, 0, true);
+ * @example var CTMC = stoch.CTMC([[0,1,0],[0,0,1],[1,0,0]], 20, 0, true);
  * @param {Array<Array<number>>} transMatrix
  * @param {number} T
  * @param {number} start
