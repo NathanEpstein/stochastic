@@ -11,7 +11,7 @@ var transMatrixTwo = [
     [0, 1, 0]
 ];
 
-var DTMC = stoch.DTMC(transMatrixTwo, 20, 0, true);
+var DTMC = stoch.DTMC([[0,1],[1,0]], 20, 0, true);
 
 console.log(DTMC);
 
