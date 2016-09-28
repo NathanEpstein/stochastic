@@ -4,7 +4,7 @@ var plot = require('plotter').plot;
 var stoch = require('../src/index');
 var report = require('./report');
 
-var brown = stoch.brown(1.0, 5.0, 60, 30, true);
+var brown = stoch.brown(1.0, -0.1, 0.1, 100, true);
 
 console.log(brown);
 

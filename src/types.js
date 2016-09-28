@@ -30,4 +30,4 @@ console.log(Math.sign(-5));
 console.log(isNonNegative(8));
 console.log(isMatrix([[]]));
 console.log(isSymetricMatrix([[1], [1,2,3], [1], [1,2,3]]));
-console.log(isSymetricMatrix([[1], [1]));
+console.log(isSymetricMatrix([[1], [1]]));

@@ -3,7 +3,7 @@ var plot = require('plotter').plot;
 
 var stoch = require('../src/index');
 
-var GBM = stoch.GBM(1.0, -0.25, 2.0, 4.0, 1000, true);
+var GBM = stoch.GBM(1.0, -0.1, 0.1, 1.0, 100, true);
 
 console.log(GBM);
 

@@ -80,7 +80,7 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
  * Returns an array corresponding to the path of [Brownian motion](http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
  * 
  * ![brown](out/brown.png)
- * @example var brown = stoch.brown(1.0, +5.0, +60, 30, true);
+ * @example var brown = stoch.brown(1.0, -0.1, +0.1, 100, true);
  * @param {number} mu drift parameter (a real number)
  * @param {number} sigma volatility parameter (strictly positive real) 
  * @param {number} T time (strictly positive real)
@@ -115,7 +115,7 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
  * Returns an array corresponding to the path of [geometric Brownian motion](http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
  * 
  * ![GBM](out/GBM.png)
- * @example var GBM = stoch.GBM(1.0, -0.25, 2.0, 4.0, 1000, true);
+ * @example var GBM = stoch.GBM(1.0, -0.1, 0.1, 1.0, 100, true);
  * @param {number} S0 initialized process value
  * @param {number} mu drift parameter
  * @param {number} sigma volatility parameter (strictly positive real)
