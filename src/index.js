@@ -41,7 +41,9 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
 
 /**
  * Returns an array with num normal random variables in a [normal distribution](http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
- * @example var norm = stoch.norm(1, 1, 3);
+ *
+ * ![norm](out/norm.png)
+ * @example var norm = stoch.norm(1, 1, 100);
  * @param {number} mu the mean or expectation of the distribution (and also its median and mode)
  * @param {number} sigma standard deviation as positive number
  * @param {number} [num=1] a positive integer

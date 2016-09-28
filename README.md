@@ -39,6 +39,8 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 Returns an array with num normal random variables in a [normal distribution](http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
 
+![norm](out/norm.png)
+
 **Parameters**
 
 -   `mu` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** the mean or expectation of the distribution (and also its median and mode)
@@ -48,7 +50,7 @@ Returns an array with num normal random variables in a [normal distribution](htt
 **Examples**
 
 ```javascript
-var norm = stoch.norm(1, 1, 3);
+var norm = stoch.norm(1, 1, 100);
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** normal random values
