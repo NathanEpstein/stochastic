@@ -14,19 +14,21 @@ var arr = Array
           return Math.round(Math.random() * 100);
         });
 
-var hist = stoch.hist(arr);
+// var hist = stoch.hist(arr);
+var hist = stoch.hist([1,1,1,1,2,3,3,4,4,4]);
 
-console.log(arr, hist);
 
+var data = Object.keys(hist).map((e, i, c) => { return hist[e]; }); 
+console.log(hist, data);
 
 plot({
-    data: Object.keys(hist).sort().reduce(function(p, c) { p.push(hist[c]); return p;  }, []),
-   style: 'boxes',
-    boxwidth: '0.5',
-    filename:   'out/hist.png',
-    xlabel:     'bucket',
-    ylabel:     'count',
-    format:     'png'
+  data: data,
+  style: 'boxes',
+  boxwidth: '1',
+  filename:   'out/hist.png',
+  xlabel:     'bucket',
+  ylabel:     'count',
+  format:     'png'
 });
 
 

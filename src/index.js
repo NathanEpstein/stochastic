@@ -323,7 +323,7 @@ var pareto = module.exports.pareto = function(x_m: number, alpha: number) {
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
  * 
  * ![hist](out/hist.png)
- * @example var hist = stoch.hist([1,2,2,3,4,4,5,6,6]);
+ * @example var hist = stoch.hist([1,1,1,1,2,3,3,4,4,4]);
  * @param {Array<number>} arr
  * @returns {Object} histogram
  */

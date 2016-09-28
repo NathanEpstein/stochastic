@@ -70,7 +70,7 @@ Returns an array corresponding to the path of [Brownian motion](http://en.wikipe
 **Examples**
 
 ```javascript
-var brown = stoch.brown(1.0, +5.0, +60, 30, true);
+var brown = stoch.brown(1.0, -0.1, +0.1, 100, true);
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** Brownian motion path
@@ -93,7 +93,7 @@ Returns an array corresponding to the path of [geometric Brownian motion](http:/
 **Examples**
 
 ```javascript
-var GBM = stoch.GBM(1.0, -0.25, 2.0, 4.0, 1000, true);
+var GBM = stoch.GBM(1.0, -0.1, 0.1, 1.0, 100, true);
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** geometric Brownian motion
@@ -203,7 +203,7 @@ Generates a histogram object from an array of data. Keys denote the lower bound 
 **Examples**
 
 ```javascript
-var hist = stoch.hist([1,2,2,3,4,4,5,6,6]);
+var hist = stoch.hist([1,1,1,1,2,3,3,4,4,4]);
 ```
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** histogram
