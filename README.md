@@ -30,7 +30,7 @@ Returns an array with the times of each arrival in a [Poisson Process](http://en
 **Examples**
 
 ```javascript
-var poissP = stoch.poissP(1, 60, true);
+var poissP = stoch.poissP(1, 100, true);
 ```
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)>** times of each arrival in a Poisson Process

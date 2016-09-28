@@ -6,7 +6,7 @@
  * Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T. 
  * 
  * ![poissP](out/poissP.png)
- * @example var poissP = stoch.poissP(1, 60, true);
+ * @example var poissP = stoch.poissP(1, 100, true);
  * @param {number} lambda (rate)
  * @param {number} T time as positive number
  * @param {boolean} [path=true] 

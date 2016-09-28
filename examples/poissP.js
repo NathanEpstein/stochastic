@@ -4,7 +4,7 @@ var plot = require('plotter').plot;
 var stoch = require('../src/index');
 var report = require('./report');
 
-var poissP = stoch.poissP(1, 60, true);
+var poissP = stoch.poissP(1, 100, true);
 
 console.log(poissP);
 
