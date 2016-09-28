@@ -7,7 +7,7 @@
 ## Simple Usage
 
 ```javascript
-var stoch = require('stochastic');
+var stoch = require('@jwalsh/stochastic');
 var pareto = stoch.pareto(+20.0, -1.0);
 ```
 
