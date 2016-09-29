@@ -3,7 +3,7 @@
 
 
 /**
- * Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate lambda until time T. 
+ * Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate `lambda` until time `T`. 
  * 
  * ![poissP](out/poissP.png)
  * @example var poissP = stoch.poissP(1, 100, true);
@@ -40,7 +40,7 @@ var poissP = module.exports.poissP = function(lambda: number, T: number, path: b
 };
 
 /**
- * Returns an array with num normal random variables in a [normal distribution](http://en.wikipedia.org/wiki/Normal_distribution) of mean mu and standard deviation sigma.
+ * Returns an array with `num` normal random variables in a [normal distribution](http://en.wikipedia.org/wiki/Normal_distribution) of mean `mu` and standard deviation `sigma`.
  *
  * ![norm](out/norm.png)
  * @example var norm = stoch.norm(1, 1, 100);
@@ -79,7 +79,7 @@ var norm = module.exports.norm = function(mu: number, sigma: number, num: number
 };
 
 /**
- * Returns an array corresponding to the path of [Brownian motion](http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
+ * Returns an array corresponding to the path of [Brownian motion](http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to `T` with drift parameter `mu` and volatility parameter `sigma` (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i * (T/steps).
  * 
  * ![brown](out/brown.png)
  * @example var brown = stoch.brown(1.0, -0.1, +0.1, 100, true);
@@ -114,7 +114,7 @@ var brown = module.exports.brown = function(mu: number, sigma: number, T: number
 };
 
 /**
- * Returns an array corresponding to the path of [geometric Brownian motion](http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to T with drift parameter mu and volatility parameter sigma (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time i * (T/steps).
+ * Returns an array corresponding to the path of [geometric Brownian motion](http://en.wikipedia.org/wiki/Geometric_Brownian_motion) from time 0 to `T` with drift parameter `mu` and volatility parameter `sigma` (the process is initialized to be S0). The i-th entry in the array corresponds to the geometric Brownian process at time `i * (T/steps)`.
  * 
  * ![GBM](out/GBM.png)
  * @example var GBM = stoch.GBM(1.0, -0.1, 0.1, 1.0, 100, true);
@@ -146,7 +146,7 @@ var GBM = module.exports.GBM = function(S0: number, mu:number, sigma: number, T:
 };
 
 /**
- * Returns an array with the states at each step of the [discrete-time Markov Chain](http://en.wikipedia.org/wiki/Markov_chain) given by transMatrix (2-d array). The number of transitions is given by steps. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+ * Returns an array with the states at each step of the [discrete-time Markov Chain](http://en.wikipedia.org/wiki/Markov_chain) given by `transMatrix` (a square matrix). The number of transitions is given by `steps`. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * 
  * ![DTMC](out/DTMC.png)
  * @example var DTMC = stoch.DTMC([[0,1,0],[0,0,1],[1,0,0]], 20, 0, true);
@@ -211,7 +211,7 @@ var DTMC = module.exports.DTMC = function(transMatrix: Array<Array<number>>, ste
 
 
 /**
- * Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (2-d array). The Markov Chain is simulated until time T. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+ * Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (a square matrix). The Markov Chain is simulated until time `T`. The initial state is given by `start` (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  * 
  * ![CTMC](out/CTMC.png)
  * @example var CTMC = stoch.CTMC([[0,1,0],[0,0,1],[1,0,0]], 20, 0, true);
