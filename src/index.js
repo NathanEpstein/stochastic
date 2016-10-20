@@ -1,6 +1,4 @@
 /* @flow */
-'use strict';
-
 
 /**
  * Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate `lambda` until time `T`.
