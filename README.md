@@ -180,6 +180,7 @@ Generates a Pareto random variables with parameters `x_m` and `alpha`.
 **Parameters**
 
 -   `x_a` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** (positive)
+-   `x_m`  
 -   `alpha` **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
 
 **Examples**

@@ -2,7 +2,7 @@
   "name": "@jwalsh/stochastic",
   "version": "0.1.5",
   "description": "Simulate Poisson Processes, Brownian motion, Markov chains, and normal random variables",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "keywords": [
     "stochastic",
     "histogram",
@@ -21,7 +21,7 @@
     "examples": "for A in examples/*.js ; do ./node_modules/.bin/babel-node $A; done",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint": "./node_modules/.bin/eslint src",
-    "prepublish": "./node_modules/.bin/babel src --out-dir dist && npm run docs",
+    "prepublish": "./node_modules/.bin/babel src --out-dir lib && npm run docs && ./node_modules/.bin/webpack",
     "release": "npm version patch && git push && git push origin --tags && npm publish --access public",
     "start": "./node_modules/.bin/babel-node src/index.js",
     "test": "./node_modules/.bin/babel-node tests/index.js"
@@ -38,7 +38,8 @@
     "documentation": "^4.0.0-beta10",
     "eslint": "^3.5.0",
     "flow-bin": "^0.32.0",
-    "plotter": "^0.5.0"
+    "plotter": "^0.5.0",
+    "webpack": "^1.13.2"
   },
   "dependencies": {
     "babel-plugin-syntax-flow": "^6.13.0",
