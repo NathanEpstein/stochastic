@@ -13,7 +13,7 @@
  * @returns {number[]} times of each arrival in a Poisson Process
  */
 module.exports.poissP = (lambda/*: number */, T/*: number */, path/*: boolean */)/*: Array<number> */ => {
-  var U, exp, N_t, t, n;
+  let U, exp, N_t, t, n;
   N_t = [0];
   t = 0;
   n = 0;
@@ -49,9 +49,9 @@ module.exports.poissP = (lambda/*: number */, T/*: number */, path/*: boolean */
  * @param {number} [num=1] a positive integer
  * @returns {number[]} normal random values
  */
-var norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: number */)/*: Array<number> */ =>  {
-  var U1, U2, x, y, z1, z2;
-  var sample = [];
+const norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: number */)/*: Array<number> */ =>  {
+  let U1, U2, x, y, z1, z2;
+  let sample = [];
 
   if (num <= 0 || sigma <= 0) {
     return sample;
@@ -72,7 +72,7 @@ var norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: nu
   }
 
   if (num / 2 % 2 != 0) sample.push(boxMuller(mu, sigma)[0]);
-  for (var i = 0; i < Math.floor(num / 2); i++) {
+  for (let i = 0; i < Math.floor(num / 2); i++) {
     sample = sample.concat(boxMuller(mu, sigma));
   }
   return sample;
@@ -90,16 +90,16 @@ var norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: nu
  * @param {boolean} [path=true]
  * @return {number[]} Brownian motion path
  */
-var brown = module.exports.brown = (
+const brown = module.exports.brown = (
   mu/*: number */,
   sigma/*: number */,
   T/*: number */,
   steps/*: number */,
   path/*: boolean */)/*: Array<number> */ => {
-  var B_t = [0];
-  var B = 0;
-  var dt = T / steps;
-  var dB;
+  const B_t = [0];
+  let B = 0;
+  const dt = T / steps;
+  let dB;
 
   if (!(T > 0) || !(steps > 0)) {
     return B_t;
@@ -109,7 +109,7 @@ var brown = module.exports.brown = (
       return [((mu * T) + (sigma * norm(0, Math.sqrt(T), 1)[0]))];
   }
   else {
-    for (var i = 0; i < steps; i++) {
+    for (let i = 0; i < steps; i++) {
         dB = (mu * dt) + (sigma * norm(0, Math.sqrt(dt), 1)[0]);
       B += dB;
       B_t.push(B);
@@ -138,8 +138,8 @@ module.exports.GBM = (
   T/*: number */,
   steps/*: number */,
   path/*: boolean */)/*: Array<number> */ =>  {
-  var S_t = [];
-    var B_t = [0];
+  const S_t = [];
+    let B_t = [0];
 
   if (!(T > 0) || !(steps > 0)) {
     return B_t;
@@ -173,20 +173,20 @@ module.exports.DTMC = (
   start/*: number */,
   path/*: boolean */)/*: Array<number> */  => {
   //function to check if input is a valid transition matrix
-  var isValid = matrix => {
-    var n = matrix.length;
-    for (var i = 0; i < n; i++) {
-      var sum = 0;
+  const isValid = matrix => {
+    const n = matrix.length;
+    for (let i = 0; i < n; i++) {
+      let sum = 0;
       if (matrix[i].length != n) {
         return false;
       }
-      for (var j = 0; j < n; j++) {
+      for (let j = 0; j < n; j++) {
         if (matrix[i][j] > 1 || matrix[i][j] < 0) {
           return false;
         }
         sum += matrix[i][j];
       }
-      var eps = (4 * Math.pow(10, -16));
+      const eps = (4 * Math.pow(10, -16));
       if (sum < 1 - eps || sum > 1 + eps) {
         return false;
       }
@@ -200,16 +200,16 @@ module.exports.DTMC = (
   }
 
   //initialize the Markov Chain
-  var init = parseInt(start, 10);
-  var fullPath = [];
+  const init = parseInt(start, 10);
+  const fullPath = [];
   fullPath.push(init);
-  var stateRow = transMatrix[init];
-  var U;
+  let stateRow = transMatrix[init];
+  let U;
 
-  for (var i = 0; i < steps; i++) {
+  for (let i = 0; i < steps; i++) {
     U = Math.random();
-    var sum = 0;
-    for (var j = 0; j < stateRow.length; j++) {
+    let sum = 0;
+    for (let j = 0; j < stateRow.length; j++) {
       sum += stateRow[j];
       if (sum > U) {
         fullPath.push(j);
@@ -244,13 +244,13 @@ module.exports.CTMC = (
   start/*: number */,
   path/*: boolean */)/*: {[ts:string]: number} */ => {
   // function to determine if input is a valid CTMC transition matrix
-  var isValid = matrix => {
-    var n = matrix.length;
-    for (var i = 0; i < n; i++) {
+  const isValid = matrix => {
+    const n = matrix.length;
+    for (let i = 0; i < n; i++) {
       if (matrix[i].length != n) {
         return false;
       }
-      for (var j = 0; j < n; j++) {
+      for (let j = 0; j < n; j++) {
         if (matrix[i][j] < 0) {
           return false;
         }
@@ -265,16 +265,16 @@ module.exports.CTMC = (
   }
 
   // initialize simulation of the CTMC
-  var fullPath = { "0": start };
-  var lastState = start;
-  var stateRow = transMatrix[start];
-  var t = 0;
-  var U, exp, sum;
+  const fullPath = { "0": start };
+  let lastState = start;
+  let stateRow = transMatrix[start];
+  let t = 0;
+  let U, exp, sum;
 
   // begin simulation
   while (t < T) {
-    var lambda = 0;
-    for (var i = 0; i < stateRow.length; i++) {
+    let lambda = 0;
+    for (let i = 0; i < stateRow.length; i++) {
       lambda += stateRow[i];
     }
     U = Math.random();
@@ -292,7 +292,7 @@ module.exports.CTMC = (
 
     sum = 0;
     U = Math.random();
-    for (var j = 0; j < stateRow.length; j++) {
+    for (let j = 0; j < stateRow.length; j++) {
       sum += stateRow[j] / lambda;
       if (sum > U) {
         stateRow = transMatrix[j];
@@ -313,10 +313,10 @@ module.exports.CTMC = (
  * @returns {number[]} random sample
  */
 module.exports.sample = (arr/*: number[] */, n/*: number */) => {
-  var samp = [];
-  for (var i = 0; i < n; i++) {
-    var index = Math.floor(Math.random() * arr.length);
-    var value = arr[index];
+  const samp = [];
+  for (let i = 0; i < n; i++) {
+    const index = Math.floor(Math.random() * arr.length);
+    const value = arr[index];
     samp.push(value);
   }
   return samp;
@@ -348,25 +348,25 @@ module.exports.pareto = (x_m/*: number */, alpha/*: number */) => x_m / Math.pow
  * @returns {Object} histogram
  */
 module.exports.hist = (arr/*: Array<number> */) => {
-  var newArr = arr.slice().sort((a, b) => a - b);
+  const newArr = arr.slice().sort((a, b) => a - b);
 
-  var max = newArr[arr.length - 1];
-  var min = newArr[0];
-  var bins = Math.round(Math.sqrt(arr.length));
-  var binSize = (max - min) / bins;
+  const max = newArr[arr.length - 1];
+  const min = newArr[0];
+  const bins = Math.round(Math.sqrt(arr.length));
+  const binSize = (max - min) / bins;
 
-  var obj = {};
-  var keys = [];
-  for (var i = 0; i < bins; i++) {
-    var key = min + (i * binSize);
+  const obj = {};
+  const keys = [];
+  for (let i = 0; i < bins; i++) {
+    const key = min + (i * binSize);
     keys.push(key);
     obj[key] = 0;
   }
 
-  for (var j = 0; j < arr.length; j++) {
-    var val = min;
-    var temp_key = 0;
-    var cont = true;
+  for (let j = 0; j < arr.length; j++) {
+    let val = min;
+    let temp_key = 0;
+    let cont = true;
     while (cont) {
       if (newArr[j] == newArr[newArr.length - 1]) {
         obj[keys[keys.length - 1]] += 1;
