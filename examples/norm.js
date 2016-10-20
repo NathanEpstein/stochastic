@@ -1,14 +1,14 @@
 // norm(mu, sigma, num)
 
-var stoch = require('../src/index');
-var report = require('./report');
-var plot = require('plotter').plot;
+import * as stoch from '../src/index';
+
+import {plot} from 'plotter';
 
 
-var norm = stoch.norm(1, 1, 100);
-var hist = stoch.hist(norm);
+const norm = stoch.norm(1, 1, 100);
+const hist = stoch.hist(norm);
 
-var data = Object.keys(hist).map((e, i, c) => { return hist[e]; }); 
+const data = Object.keys(hist).map((e, i, c) => { return hist[e]; });
 console.log(hist, data);
 
 plot({

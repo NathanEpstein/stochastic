@@ -50,7 +50,7 @@ export function poissP(
  * @param {number} [num=1] a positive integer
  * @returns {number[]} normal random values
  */
-const norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: number */)/*: Array<number> */ =>  {
+export const norm = (mu/*: number */, sigma/*: number */, num/*: number */)/*: Array<number> */ =>  {
   let U1, U2, x, y, z1, z2;
   let sample = [];
 
@@ -91,7 +91,7 @@ const norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: 
  * @param {boolean} [path=true]
  * @return {number[]} Brownian motion path
  */
-const brown = module.exports.brown = (
+export const brown = (
   mu/*: number */,
   sigma/*: number */,
   T/*: number */,

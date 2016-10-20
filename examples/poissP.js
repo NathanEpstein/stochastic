@@ -1,10 +1,10 @@
 // poissP(lambda, T, path)
 
-var plot = require('plotter').plot;
-var stoch = require('../src/index');
-var report = require('./report');
+import {plot} from 'plotter';
 
-var poissP = stoch.poissP(1, 100, true);
+import * as stoch from '../src/index';
+
+const poissP = stoch.poissP(1, 100, true);
 
 console.log(poissP);
 

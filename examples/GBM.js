@@ -1,9 +1,9 @@
 // GBM(S0, mu, sigma, T, steps, path)
-var plot = require('plotter').plot;
+import {plot} from 'plotter';
 
-var stoch = require('../src/index');
+import * as stoch from '../src/index';
 
-var GBM = stoch.GBM(1.0, -0.1, 0.1, 1.0, 100, true);
+const GBM = stoch.GBM(1.0, -0.1, 0.1, 1.0, 100, true);
 
 console.log(GBM);
 
@@ -14,4 +14,3 @@ plot({
     ylabel:     'GBM',
     format:     'png'
 });
-

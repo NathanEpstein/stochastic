@@ -1,19 +1,17 @@
 // brown(mu, sigma, T, steps, path)
 
-var plot = require('plotter').plot;
-var stoch = require('../src/index');
-var report = require('./report');
+import {plot} from 'plotter';
+import {brown} from '../src/index';
 
-var brown = stoch.brown(1.0, -0.1, 0.1, 100, true);
+const example = brown(1.0, -0.1, 0.1, 100, true);
 
-console.log(brown);
+console.log(example);
 
 
 plot({
-    data:       brown,
+    data:       example,
     filename:   'out/brown.png',
     xlabel:     'index',
     ylabel:     'goal',
     format:     'png'
 });
-

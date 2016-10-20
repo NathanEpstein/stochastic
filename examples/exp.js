@@ -1,8 +1,7 @@
 // exp(lambda)
 
-var stoch = require('../src/index');
-var report = require('./report');
+import * as stoch from '../src/index';
 
-var exp = stoch.exp(20);
+const exp = stoch.exp(20);
 
 console.log(exp);

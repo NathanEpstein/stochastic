@@ -1,24 +1,21 @@
 // hist(arr)
-var plot = require('plotter').plot;
+import {plot} from 'plotter';
 
-var stoch = require('../src/index');
-var report = require('./report');
+import * as stoch from '../src/index';
 
 // [ 31, 63, 41, 60, 35...]
-var arr = Array
+const arr = Array
       .apply(
         null,
         Array(200))
       .map(
-        function(e, i, c) {
-          return Math.round(Math.random() * 100);
-        });
+        (e, i, c) => Math.round(Math.random() * 100));
 
 // var hist = stoch.hist(arr);
-var hist = stoch.hist([1,1,1,1,2,3,3,4,4,4]);
+const hist = stoch.hist([1,1,1,1,2,3,3,4,4,4]);
 
 
-var data = Object.keys(hist).map((e, i, c) => { return hist[e]; }); 
+const data = Object.keys(hist).map((e, i, c) => { return hist[e]; });
 console.log(hist, data);
 
 plot({
@@ -30,5 +27,3 @@ plot({
   ylabel:     'count',
   format:     'png'
 });
-
-
