@@ -12,7 +12,7 @@
  * @param {boolean} [path=true]
  * @returns {number[]} times of each arrival in a Poisson Process
  */
-var poissP = module.exports.poissP = function(lambda/*: number */, T/*: number */, path/*: boolean */)/*: Array<number> */ {
+module.exports.poissP = (lambda/*: number */, T/*: number */, path/*: boolean */)/*: Array<number> */ => {
   var U, exp, N_t, t, n;
   N_t = [0];
   t = 0;
@@ -49,7 +49,7 @@ var poissP = module.exports.poissP = function(lambda/*: number */, T/*: number *
  * @param {number} [num=1] a positive integer
  * @returns {number[]} normal random values
  */
-var norm = module.exports.norm = function(mu/*: number */, sigma/*: number */, num/*: number */)/*: Array<number> */ {
+var norm = module.exports.norm = (mu/*: number */, sigma/*: number */, num/*: number */)/*: Array<number> */ =>  {
   var U1, U2, x, y, z1, z2;
   var sample = [];
 
@@ -90,7 +90,12 @@ var norm = module.exports.norm = function(mu/*: number */, sigma/*: number */, n
  * @param {boolean} [path=true]
  * @return {number[]} Brownian motion path
  */
-var brown = module.exports.brown = function(mu/*: number */, sigma/*: number */, T/*: number */, steps/*: number */, path/*: boolean */)/*: Array<number> */ {
+var brown = module.exports.brown = (
+  mu/*: number */,
+  sigma/*: number */,
+  T/*: number */,
+  steps/*: number */,
+  path/*: boolean */)/*: Array<number> */ => {
   var B_t = [0];
   var B = 0;
   var dt = T / steps;
@@ -126,7 +131,13 @@ var brown = module.exports.brown = function(mu/*: number */, sigma/*: number */,
  * @param {boolean} [path=true]
  * @returns {number[]} geometric Brownian motion
  */
-var GBM = module.exports.GBM = function(S0/*: number */, mu/*:number */, sigma/*: number */, T/*: number */, steps/*: number */, path/*: boolean */)/*: Array<number> */ {
+module.exports.GBM = (
+  S0/*: number */,
+  mu/*:number */,
+  sigma/*: number */,
+  T/*: number */,
+  steps/*: number */,
+  path/*: boolean */)/*: Array<number> */ =>  {
   var S_t = [];
     var B_t = [0];
 
@@ -137,8 +148,8 @@ var GBM = module.exports.GBM = function(S0/*: number */, mu/*:number */, sigma/*
   if (path == false) {
       return [S0 * Math.exp((mu - (sigma * sigma / 2)) * T + (sigma * norm(0, Math.sqrt(T), 1)[0]))];
   } else {
-      var B_t = brown((mu - (sigma * sigma / 2)), sigma, T, steps, true);
-    B_t.forEach(function(B) {
+      B_t = brown((mu - (sigma * sigma / 2)), sigma, T, steps, true);
+    B_t.forEach(B => {
       S_t.push(S0 * Math.exp(B));
     });
     return S_t;
@@ -156,9 +167,13 @@ var GBM = module.exports.GBM = function(S0/*: number */, mu/*:number */, sigma/*
  * @param {boolean} path
  * @returns {number[]}
  */
-var DTMC = module.exports.DTMC = function(transMatrix/*: Array<Array<number>> */, steps/*: number */, start/*: number */, path/*: boolean */)/*: Array<number> */ {
+module.exports.DTMC = (
+  transMatrix/*: Array<Array<number>> */,
+  steps/*: number */,
+  start/*: number */,
+  path/*: boolean */)/*: Array<number> */  => {
   //function to check if input is a valid transition matrix
-  var isValid = function(matrix) {
+  var isValid = matrix => {
     var n = matrix.length;
     for (var i = 0; i < n; i++) {
       var sum = 0;
@@ -223,9 +238,13 @@ var DTMC = module.exports.DTMC = function(transMatrix/*: Array<Array<number>> */
  * @param {boolean} [path=true]
  * @returns {Object} Continuous-time Markov chain
  */
-var CTMC = module.exports.CTMC = function(transMatrix/*: Array<Array<number>> */, T/*: number */, start/*: number */, path/*: boolean */) {
+module.exports.CTMC = (
+  transMatrix/*: Array<Array<number>> */,
+  T/*: number */,
+  start/*: number */,
+  path/*: boolean */)/*: {[ts:string]: number} */ => {
   // function to determine if input is a valid CTMC transition matrix
-  var isValid = function(matrix) {
+  var isValid = matrix => {
     var n = matrix.length;
     for (var i = 0; i < n; i++) {
       if (matrix[i].length != n) {
@@ -242,7 +261,7 @@ var CTMC = module.exports.CTMC = function(transMatrix/*: Array<Array<number>> */
 
   //return null if the transition matrix is not valid
   if (!isValid(transMatrix)) {
-    return null;
+    throw new Error("Invalid transMatrix");
   }
 
   // initialize simulation of the CTMC
@@ -264,7 +283,7 @@ var CTMC = module.exports.CTMC = function(transMatrix/*: Array<Array<number>> */
 
     if (t > T) {
       if (path == false) {
-        return lastState;
+        return {t: lastState};
       }
       else {
         return fullPath;
@@ -273,16 +292,17 @@ var CTMC = module.exports.CTMC = function(transMatrix/*: Array<Array<number>> */
 
     sum = 0;
     U = Math.random();
-    for (var i = 0; i < stateRow.length; i++) {
-      sum += stateRow[i] / lambda;
+    for (var j = 0; j < stateRow.length; j++) {
+      sum += stateRow[j] / lambda;
       if (sum > U) {
-        stateRow = transMatrix[i];
-        fullPath[t] = i;
-        lastState = i;
-        i = stateRow.length;
+        stateRow = transMatrix[j];
+        fullPath[t] = j;
+        lastState = j;
+        j = stateRow.length;
       }
     }
   }
+  return fullPath;
 };
 
 /**
@@ -292,7 +312,7 @@ var CTMC = module.exports.CTMC = function(transMatrix/*: Array<Array<number>> */
  * @param {number} n (positive integer)
  * @returns {number[]} random sample
  */
-var sample = module.exports.sample = function(arr/*: number[] */, n/*: number */) {
+module.exports.sample = (arr/*: number[] */, n/*: number */) => {
   var samp = [];
   for (var i = 0; i < n; i++) {
     var index = Math.floor(Math.random() * arr.length);
@@ -308,9 +328,7 @@ var sample = module.exports.sample = function(arr/*: number[] */, n/*: number */
  * @param {number} lambda (positive)
  * @returns {number} variable
  */
-var exp = module.exports.exp = function(lambda/*: number */) {
-  return (-Math.log(Math.random()) / lambda);
-};
+module.exports.exp = (lambda/*: number */) => -Math.log(Math.random()) / lambda;
 
 /**
  * Generates a Pareto random variables with parameters `x_m` and `alpha`.
@@ -319,9 +337,7 @@ var exp = module.exports.exp = function(lambda/*: number */) {
  * @param {number} alpha
  * @returns {number} distribution
  */
-var pareto = module.exports.pareto = function(x_m/*: number */, alpha/*: number */) {
-  return (x_m / Math.pow(Math.random(), 1 / alpha));
-};
+module.exports.pareto = (x_m/*: number */, alpha/*: number */) => x_m / Math.pow(Math.random(), 1 / alpha);
 
 /**
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
@@ -331,10 +347,8 @@ var pareto = module.exports.pareto = function(x_m/*: number */, alpha/*: number 
  * @param {Array<number>} arr
  * @returns {Object} histogram
  */
-var hist = module.exports.hist = function(arr/*: Array<number> */) {
-  var newArr = arr.slice().sort(function(a, b) {
-    return a - b;
-  });
+module.exports.hist = (arr/*: Array<number> */) => {
+  var newArr = arr.slice().sort((a, b) => a - b);
 
   var max = newArr[arr.length - 1];
   var min = newArr[0];
@@ -352,13 +366,16 @@ var hist = module.exports.hist = function(arr/*: Array<number> */) {
   for (var j = 0; j < arr.length; j++) {
     var val = min;
     var temp_key = 0;
-    while (true) {
+    var cont = true;
+    while (cont) {
       if (newArr[j] == newArr[newArr.length - 1]) {
         obj[keys[keys.length - 1]] += 1;
+        cont = false;
         break;
       }
       else if (newArr[j] < val + binSize) {
         obj[keys[temp_key]] += 1;
+        cont = false;
         break;
       }
       else {
