@@ -2,32 +2,26 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://wal.sh/static/css/home.css" />
-    <script src='http://nornagon.github.com/scrubby/scrubby.all.js'></script>
+    <script src="http://nornagon.github.com/scrubby/scrubby.all.js"></script>
     <script src="../dist/bundle.min.js"></script>
   </head>
   <body>
     <h1>Stochastic Examples</h1>
 <h2>CTMC</h2>
-<div id='CTMC'></div>
-<pre id='CTMCReport'></pre>
+<pre id='CTMC'></pre>
 <script type="text/scrubby">
-// CTMC(transMatrix, T, start, path)
-
-
+var CTMCReport = document.querySelector('#CTMC');
 var transMatrixTwo = [
         [0.1, 0.9],
         [0.5, 0.5]
 ];
 
-var CTMC = stoch.CTMC(transMatrixTwo, 20, 0, true);
-
-console.log(CTMC);
+var CTMC = stoch.CTMC(transMatrixTwo, 10, 0, true);
+CTMCReport.innerHTML = JSON.stringify(CTMC, null, '  ');
 </script>
-<div id='DTMC'></div>
 <h2>DTMC</h2>
+<pre id='DTMC'></pre>
 <script type="text/scrubby">
-// DTMC(transMatrix, steps, start, path)
-
 
 var transMatrixTwo = [
         [0.1, 0.9],
@@ -35,18 +29,13 @@ var transMatrixTwo = [
 ];
 
 var DTMC = stoch.DTMC(transMatrixTwo, 20, 0, true);
-
-console.log(DTMC);
+document.querySelector('#DTMC').innerHTML = DTMC;
 </script>
-<div id='GBM'></div>
 <h2>GBM</h2>
+<pre id='GBM'></pre>
 <script type="text/scrubby">
-// GBM(S0, mu, sigma, T, steps, path)
-
-
-var GBM = stoch.GBM(10, .5, 10, true, 20, true);
-
-console.log(GBM);
+var GBM = stoch.GBM(10, .5, 10, true, 10, true);
+document.querySelector('#GBM').innerHTML = GBM.join(',\n');
 </script>
 <div id='brown'></div>
 <h2>brown</h2>
@@ -55,7 +44,7 @@ console.log(GBM);
 
 
 var brown = stoch.brown(10, .5, 20, true, 20, true);
-
+var brownReport = document.querySelector('#brown');
 console.log(brown);
 </script>
 <div id='exp'></div>
@@ -65,7 +54,7 @@ console.log(brown);
 
 
 var exp = stoch.exp(20);
-
+var expReport = document.querySelector('#exp');
 console.log(exp);
 </script>
 <div id='hist'></div>
@@ -140,9 +129,6 @@ var sample = stoch.sample(arr, 5);
 
 console.log(sample);
 </script>
-
-    <script src="templates/reporter.js">
-    </script>
 
 
 </body></html>
