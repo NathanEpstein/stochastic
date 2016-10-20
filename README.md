@@ -15,7 +15,7 @@ var pareto = stoch.pareto(+20.0, -1.0);
 
 ### poissP
 
-Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate `lambda` until time `T`. 
+Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate `lambda` until time `T`.
 
 ![poissP](out/poissP.png)
 
@@ -55,7 +55,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ### brown
 
-Returns an array corresponding to the path of [Brownian motion](http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to `T` with drift parameter `mu` and volatility parameter `sigma` (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time i \* (T/steps).
+Returns an array corresponding to the path of [Brownian motion](http://en.wikipedia.org/wiki/Wiener_process#Related_processes) from time 0 to `T` with drift parameter `mu` and volatility parameter `sigma` (the process is initialized to be 0). The i-th entry in the array corresponds to the Brownian process at time `i * (T / steps)`.
 
 ![brown](out/brown.png)
 
@@ -121,7 +121,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ### CTMC
 
-Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (a square matrix). The Markov Chain is simulated until time `T`. The initial state is given by `start` (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
+Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (a square matrix). The Markov Chain is simulated until time `T`. The initial state is given by `start` (the states are indexed from 0 to n-1 where n is the number of arrays in `transMatrix`).
 
 ![CTMC](out/CTMC.png)
 
@@ -142,7 +142,7 @@ Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 ### sample
 
-Generates a random sample (with replacement) from a user input array of observations. Number of observations is specified by the user.
+Generates a random sample (with replacement) from array `arr` of observations. Number of observations `n` is specified by the user.
 
 **Parameters**
 
@@ -159,7 +159,7 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ### exp
 
-Generates an exponential random variable with rate parameter lambda.
+Generates an exponential random variable with rate parameter `lambda`.
 
 **Parameters**
 
@@ -175,7 +175,7 @@ Returns **[number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 ### pareto
 
-Generates a Pareto random variables with parameters x_m and alpha.
+Generates a Pareto random variables with parameters `x_m` and `alpha`.
 
 **Parameters**
 
