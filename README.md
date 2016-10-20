@@ -4,11 +4,29 @@
 
 `npm install @jwalsh/stochastic --save`
 
-## Simple Usage
+## Usage
+
+### ES2015
+
+```javascript
+import * as stoch from '@jwalsh/stochastic';
+const exp = stoch.exp(20);
+```
+
+### CommonJS
 
 ```javascript
 var stoch = require('@jwalsh/stochastic');
-var pareto = stoch.pareto(+20.0, -1.0);
+var norm = stoch.norm(1, 1, 100);
+```
+
+### CDN
+
+```html
+<script src="https://cdn.rawgit.com/jwalsh/stochastic/master/dist/bundle.min.js"></script>
+<script>
+  console.log(stoch.exp(20));
+</script>
 ```
 
 ## API
