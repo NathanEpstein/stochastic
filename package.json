@@ -22,7 +22,7 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint": "./node_modules/.bin/eslint src",
     "prepublish": "./node_modules/.bin/babel src --out-dir lib && npm run docs && ./node_modules/.bin/webpack",
-    "release": "npm version patch && git push && git push origin --tags && npm publish --access public",
+    "release": "npm run lint && npm run flow && npm run prepublish && npm version patch && git push && git push origin --tags && npm publish --access public",
     "start": "./node_modules/.bin/babel-node src/index.js",
     "test": "./node_modules/.bin/babel-node tests/index.js"
   },
