@@ -10,7 +10,10 @@
  * @param {boolean} [path=true]
  * @returns {number[]} times of each arrival in a Poisson Process
  */
-module.exports.poissP = (lambda/*: number */, T/*: number */, path/*: boolean */)/*: Array<number> */ => {
+export function poissP(
+  lambda/*: number */,
+  T/*: number */,
+  path/*: boolean */) /*: Array<number> */ {
   let U, exp, N_t, t, n;
   N_t = [0];
   t = 0;
@@ -35,7 +38,7 @@ module.exports.poissP = (lambda/*: number */, T/*: number */, path/*: boolean */
   } else {
     return N_t;
   }
-};
+}
 
 /**
  * Returns an array with `num` normal random variables in a [normal distribution](http://en.wikipedia.org/wiki/Normal_distribution) of mean `mu` and standard deviation `sigma`.
@@ -129,13 +132,13 @@ const brown = module.exports.brown = (
  * @param {boolean} [path=true]
  * @returns {number[]} geometric Brownian motion
  */
-module.exports.GBM = (
+export function GBM(
   S0/*: number */,
   mu/*:number */,
   sigma/*: number */,
   T/*: number */,
   steps/*: number */,
-  path/*: boolean */)/*: Array<number> */ =>  {
+  path/*: boolean */) /*: Array<number> */ {
   const S_t = [];
     let B_t = [0];
 
@@ -152,7 +155,7 @@ module.exports.GBM = (
     });
     return S_t;
   }
-};
+}
 
 /**
  * Returns an array with the states at each step of the [discrete-time Markov Chain](http://en.wikipedia.org/wiki/Markov_chain) given by `transMatrix` (a square matrix). The number of transitions is given by `steps`. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
@@ -165,11 +168,11 @@ module.exports.GBM = (
  * @param {boolean} path
  * @returns {number[]}
  */
-module.exports.DTMC = (
+export function DTMC(
   transMatrix/*: Array<Array<number>> */,
   steps/*: number */,
   start/*: number */,
-  path/*: boolean */)/*: Array<number> */  => {
+  path/*: boolean */) /*: Array<number> */ {
   //function to check if input is a valid transition matrix
   const isValid = matrix => {
     const n = matrix.length;
@@ -222,8 +225,7 @@ module.exports.DTMC = (
   else {
     return fullPath;
   }
-};
-
+}
 
 /**
  * Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (a square matrix). The Markov Chain is simulated until time `T`. The initial state is given by `start` (the states are indexed from 0 to n-1 where n is the number of arrays in `transMatrix`).
@@ -236,11 +238,11 @@ module.exports.DTMC = (
  * @param {boolean} [path=true]
  * @returns {Object} Continuous-time Markov chain
  */
-module.exports.CTMC = (
+export function CTMC(
   transMatrix/*: Array<Array<number>> */,
   T/*: number */,
   start/*: number */,
-  path/*: boolean */)/*: {[ts:string]: number} */ => {
+  path/*: boolean */) /*: {[ts:string]: number} */ {
   // function to determine if input is a valid CTMC transition matrix
   const isValid = matrix => {
     const n = matrix.length;
@@ -301,7 +303,7 @@ module.exports.CTMC = (
     }
   }
   return fullPath;
-};
+}
 
 /**
  * Generates a random sample (with replacement) from array `arr` of observations. Number of observations `n` is specified by the user.
@@ -310,7 +312,7 @@ module.exports.CTMC = (
  * @param {number} n (positive integer)
  * @returns {number[]} random sample
  */
-module.exports.sample = (arr/*: number[] */, n/*: number */) => {
+export function sample(arr/*: number[] */, n/*: number */) /*: Array<number> */ {
   const samp = [];
   for (let i = 0; i < n; i++) {
     const index = Math.floor(Math.random() * arr.length);
@@ -318,7 +320,7 @@ module.exports.sample = (arr/*: number[] */, n/*: number */) => {
     samp.push(value);
   }
   return samp;
-};
+}
 
 /**
  * Generates an exponential random variable with rate parameter `lambda`.
@@ -326,7 +328,9 @@ module.exports.sample = (arr/*: number[] */, n/*: number */) => {
  * @param {number} lambda (positive)
  * @returns {number} variable
  */
-module.exports.exp = (lambda/*: number */) => -Math.log(Math.random()) / lambda;
+export function exp(lambda/*: number */) /*: number */ {
+  return -Math.log(Math.random()) / lambda;
+}
 
 /**
  * Generates a Pareto random variables with parameters `x_m` and `alpha`.
@@ -335,7 +339,9 @@ module.exports.exp = (lambda/*: number */) => -Math.log(Math.random()) / lambda;
  * @param {number} alpha
  * @returns {number} distribution
  */
-module.exports.pareto = (x_m/*: number */, alpha/*: number */) => x_m / Math.pow(Math.random(), 1 / alpha);
+export function pareto(x_m/*: number */, alpha/*: number */) /*: number */ {
+  return x_m / Math.pow(Math.random(), 1 / alpha);
+}
 
 /**
  * Generates a histogram object from an array of data. Keys denote the lower bound of each bin and the values indicate the frequency of data in each bin.
@@ -345,7 +351,7 @@ module.exports.pareto = (x_m/*: number */, alpha/*: number */) => x_m / Math.pow
  * @param {Array<number>} arr
  * @returns {Object} histogram
  */
-module.exports.hist = (arr/*: Array<number> */) => {
+export function hist(arr/*: Array<number> */) {
   const newArr = arr.slice().sort((a, b) => a - b);
 
   const max = newArr[arr.length - 1];
@@ -384,4 +390,4 @@ module.exports.hist = (arr/*: Array<number> */) => {
   }
 
   return obj;
-};
+}
