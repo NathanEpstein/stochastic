@@ -227,10 +227,10 @@ var hist = stoch.hist([1,1,1,1,2,3,3,4,4,4]);
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** histogram
 
-## Development 
+## Development
 
 Testing is provided with the JavaScript implementation of
-http://clojure.org/guides/spec in `tests/`.
+<http://clojure.org/guides/spec> in `tests/`.
 
 ## License
 
