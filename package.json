@@ -38,6 +38,7 @@
     "documentation": "^4.0.0-beta10",
     "eslint": "^3.5.0",
     "flow-bin": "^0.32.0",
+    "js.spec": "^1.0.0-0",
     "plotter": "^0.5.0",
     "webpack": "^1.13.2"
   },
