@@ -1,5 +1,7 @@
 /* @flow */
 
+export let version = 'v0.0.0';
+
 /**
  * Returns an array with the times of each arrival in a [Poisson Process](http://en.wikipedia.org/wiki/Poisson_process) with rate `lambda` until time `T`.
  *
