@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://wal.sh/static/css/home.css" />
+    <script src="http://nornagon.github.com/scrubby/scrubby.all.js"></script>
+    <script src="../dist/bundle.min.js"></script>
+  </head>
+  <body>
+    <h1>Stochastic Examples</h1>
+<h2>CTMC</h2>
+<pre id='CTMC'></pre>
+<script type="text/scrubby">
+var CTMCReport = document.querySelector('#CTMC');
+var transMatrixTwo = [
+        [0.1, 0.9],
+        [0.5, 0.5]
+];
+
+var CTMC = stoch.CTMC(transMatrixTwo, 10, 0, true);
+CTMCReport.innerHTML = JSON.stringify(CTMC, null, '  ');
+</script>
+<h2>DTMC</h2>
+<pre id='DTMC'></pre>
+<script type="text/scrubby">
+
+var transMatrixTwo = [
+        [0.1, 0.9],
+        [0.5, 0.5]
+];
+
+var DTMC = stoch.DTMC(transMatrixTwo, 20, 0, true);
+document.querySelector('#DTMC').innerHTML = DTMC;
+</script>
+<h2>GBM</h2>
+<pre id='GBM'></pre>
+<script type="text/scrubby">
+var GBM = stoch.GBM(10, .5, 10, true, 10, true);
+document.querySelector('#GBM').innerHTML = GBM.join(',\n');
+</script>
+<div id='brown'></div>
+<h2>brown</h2>
+<script type="text/scrubby">
+// brown(mu, sigma, T, steps, path)
+
+
+var brown = stoch.brown(10, .5, 20, true, 20, true);
+var brownReport = document.querySelector('#brown');
+console.log(brown);
+</script>
+<div id='exp'></div>
+<h2>exp</h2>
+<script type="text/scrubby">
+// exp(lambda)
+
+
+var exp = stoch.exp(20);
+var expReport = document.querySelector('#exp');
+console.log(exp);
+</script>
+<div id='hist'></div>
+<h2>hist</h2>
+<script type="text/scrubby">
+// hist(arr)
+
+
+// [ 31, 63, 41, 60, 35...]
+var arr = Array
+      .apply(
+        null,
+        Array(20))
+      .map(
+        function(e, i, c) {
+          return Math.round(Math.random() * 100);
+        });
+
+console.log(arr);
+
+var hist = stoch.hist(arr);
+
+console.log(hist);
+</script>
+<div id='norm'></div>
+<h2>norm</h2>
+<script type="text/scrubby">
+// norm(mu, sigma, num)
+
+
+var norm = stoch.norm(.5, 10, 20);
+
+console.log(norm);
+</script>
+<div id='pareto'></div>
+<h2>pareto</h2>
+<script type="text/scrubby">
+// pareto(x_m,alpha)
+
+
+var pareto = stoch.pareto(20, 1);
+
+console.log(pareto);
+</script>
+<div id='poissP'></div>
+<h2>poissP</h2>
+<script type="text/scrubby">
+// poissP(lambda, T, path)
+
+
+var poissP = stoch.poissP(1, 20, true);
+
+console.log(poissP);
+</script>
+<div id='sample'></div>
+<h2>sample</h2>
+<script type="text/scrubby">
+// sample(arr, n)
+
+
+// [ 31, 63, 41, 60, 35...]
+var arr = Array
+      .apply(
+        null,
+        Array(20))
+      .map(
+        function(e, i, c) {
+          return Math.round(Math.random() * 100);
+        });
+
+var sample = stoch.sample(arr, 5);
+
+console.log(sample);
+</script>
+
+
+</body></html>

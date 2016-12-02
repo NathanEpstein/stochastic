@@ -1,0 +1,11 @@
+{
+    "env": {
+        "node": true,
+        "commonjs": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "module"
+    },
+    "extends": "eslint:recommended"
+}
