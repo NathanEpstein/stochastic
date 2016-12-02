@@ -157,6 +157,27 @@ export function GBM(
   }
 }
 
+const isValid = matrix => {
+  const n = matrix.length;
+  for (let i = 0; i < n; i++) {
+    let sum = 0;
+    if (matrix[i].length !== n) {
+      return false;
+    }
+    for (let j = 0; j < n; j++) {
+      if (matrix[i][j] > 1 || matrix[i][j] < 0) {
+        return false;
+      }
+      sum += matrix[i][j];
+    }
+    const eps = (4 * Math.pow(10, -16));
+    if (sum < 1 - eps || sum > 1 + eps) {
+      return false;
+    }
+  }
+  return true;
+};
+
 /**
  * Returns an array with the states at each step of the [discrete-time Markov Chain](http://en.wikipedia.org/wiki/Markov_chain) given by `transMatrix` (a square matrix). The number of transitions is given by `steps`. The initial state is given by start (the states are indexed from 0 to n-1 where n is the number of arrays in transMatrix).
  *
@@ -174,26 +195,6 @@ export function DTMC(
   start/*: number */,
   path/*: boolean */) /*: Array<number> */ {
   //function to check if input is a valid transition matrix
-  const isValid = matrix => {
-    const n = matrix.length;
-    for (let i = 0; i < n; i++) {
-      let sum = 0;
-      if (matrix[i].length !== n) {
-        return false;
-      }
-      for (let j = 0; j < n; j++) {
-        if (matrix[i][j] > 1 || matrix[i][j] < 0) {
-          return false;
-        }
-        sum += matrix[i][j];
-      }
-      const eps = (4 * Math.pow(10, -16));
-      if (sum < 1 - eps || sum > 1 + eps) {
-        return false;
-      }
-    }
-    return true;
-  };
 
   //return null if the transition matrix is not valid
   if (!isValid(transMatrix)) {
@@ -228,6 +229,47 @@ export function DTMC(
 }
 
 /**
+ * Returns the `transMatrix` for an array of mapped `states` to numerical values.
+ *
+ * @example var collate = stoch.collate([0,1,0,0,0,1,1,0,0]);
+ * @param {number[]} states
+ * @returns {Array<Array<number>>} transMatrix
+ */
+export function collate(
+  states/*: Array<number> */) {
+  // TODO: Allow for arbitrary string values let uniques = [], lookup = {};
+  var max = Math.max(...states) + 1;
+  const row = Array(max).fill(0);
+  let transMatrix = []; // Array(max).fill(row.slice());
+  for (let i = 0; i < row.length; i++) {
+    transMatrix.push(row.slice());
+  }
+
+  let result = states
+        .reduce((p, c) => {
+          p.transMatrix[p.previous][c]++;
+          p.previous = c;
+          return p;
+        }, {
+          transMatrix: transMatrix,
+          previous: 0
+        });
+  const weighted = result
+          .transMatrix
+          .map((e, i, c) => {
+            let sum = e.reduce((p, c) => {
+              return p + c;
+            }, 0);
+            return e.map((e, i, c) => {
+              return e / sum;
+            });
+          });
+  // TODO: percentages
+  // console.log(result.transMatrix);
+  return weighted;
+}
+
+/**
  * Returns an object with the {key:value} pair {time:state} at each step of the [continuous-time Markov Chain](http://en.wikipedia.org/wiki/Continuous-time_Markov_chain) given by transMatrix (a square matrix). The Markov Chain is simulated until time `T`. The initial state is given by `start` (the states are indexed from 0 to n-1 where n is the number of arrays in `transMatrix`).
  *
  * ![CTMC](out/CTMC.png)
@@ -244,20 +286,6 @@ export function CTMC(
   start/*: number */,
   path/*: boolean */) /*: {[ts:string]: number} */ {
   // function to determine if input is a valid CTMC transition matrix
-  const isValid = matrix => {
-    const n = matrix.length;
-    for (let i = 0; i < n; i++) {
-      if (matrix[i].length !== n) {
-        return false;
-      }
-      for (let j = 0; j < n; j++) {
-        if (matrix[i][j] < 0) {
-          return false;
-        }
-      }
-    }
-    return true;
-  };
 
   //return null if the transition matrix is not valid
   if (!isValid(transMatrix)) {

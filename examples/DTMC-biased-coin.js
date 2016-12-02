@@ -21,10 +21,12 @@ const flips = activeCoin.map((e, i, c) => {
     // Biased
     result = Math.random() < .8 ? 0 : 1;
   }
-  return stateCoin[result];
+  return result;
 });
 
-const dist = flips.reduce((p, c) => {
+const dist = flips
+        .map((e, i, c) => stateCoin[e])
+        .reduce((p, c) => {
   p[c] =  p[c] ?  ++p[c] : 1;
   return p;
 }, {H: 0, T: 0});
