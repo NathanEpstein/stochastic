@@ -91,7 +91,7 @@ Parameters: lambda is a positive real number.
 
 ### stoch.pareto(x_m,alpha)
 
-Generates a pareto random variables with paramters x_m and alpha.
+Generates a pareto random variables with parameters x_m and alpha.
 
 Parameters: x_m is a positive real number and alpha is a real number.
 
